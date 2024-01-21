@@ -7,6 +7,9 @@ export default {
       backgroundImage: {
         'footer-texture': "url('/img/footer-texture.png')",
         'wood':"url('./src/assets/Wood.svg')"
+      },
+      borderColor:{
+        'Black':"#000"
       }
     },
   },

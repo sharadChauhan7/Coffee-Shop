@@ -43,7 +43,7 @@ function Tabsearch() {
 
 function Info() {
   return (
-    <div className="w-[100%] rounded-3xl h-48 border overflow-hidden bg-wood bg-cover px-28 py-5 flex">
+    <div className="w-[100%] rounded-3xl h-48 border overflow-hidden bg-wood bg-cover px-28 py-5 flex" id="home">
       <div className="flex w-[20%]">
         <img src={Wood} alt="" />
       </div>
