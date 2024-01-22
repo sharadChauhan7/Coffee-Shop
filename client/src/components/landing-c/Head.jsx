@@ -19,8 +19,8 @@ function Tab({ btns }) {
     <>
       {btns.map((data, index) => {
         return (
-          <a className="mx-4" href={`#${data}`} key={index}>
-            {data}
+          <a className="mx-4" href={`${data[1]}`} key={index}>
+            {data[0]}
           </a>
         );
       })}
@@ -43,7 +43,7 @@ function Tabsearch() {
 
 function Info() {
   return (
-    <div className="w-[100%] rounded-3xl h-48 border overflow-hidden bg-wood bg-cover px-28 py-5 flex" id="home">
+    <div className="w-[100%] rounded-3xl h-48 border overflow-hidden bg-wood bg-cover px-28 py-5 flex" id="aboutus">
       <div className="flex w-[20%]">
         <img src={Wood} alt="" />
       </div>

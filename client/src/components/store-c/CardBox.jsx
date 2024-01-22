@@ -12,16 +12,16 @@ function CardBox({items}) {
         console.log("Working");
         setProduct(pureData);
       }
-      // getData(items);
+      getData(items);
 
     },[]);
 
   return (
     <div className='flex justify-between'>
-      {/* {product.map((value,index)=>{
+      {product.map((value,index)=>{
         return <Card data={value} key={index}/>
-      })} */}
-      <Card/>
+      })}
+      {/* <Card/> */}
     </div>
   )
 }

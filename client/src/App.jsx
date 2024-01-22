@@ -10,6 +10,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/store" element={<Store />} />
         </Routes>
       </Router>
     </>
