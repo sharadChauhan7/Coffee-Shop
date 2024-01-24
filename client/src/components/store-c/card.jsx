@@ -2,7 +2,7 @@ import React from 'react'
 
 function card({data}) {
   return (
-    <div className='w-60 h-72 rounded-3xl overflow-hidde shadow-xl border'>
+    <div className='w-60 h-72  overflow-hidde shadow-md rounded-3xl border'>
         <img src={data.image_url} className='w-full h-3/4' alt="" />
         <div className='h-20 p-2'>
             <div className='flex justify-between items-center'>

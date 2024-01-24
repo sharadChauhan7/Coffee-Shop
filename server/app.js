@@ -17,7 +17,6 @@ app.use(express.json());
 app.use(cors());
 
 app.use(passport.initialize());
-// app.use(passport.session());
 
 
 const sessionOption={
@@ -32,6 +31,7 @@ const sessionOption={
 }
 
 app.use(session(sessionOption));
+app.use(passport.session());
 
 passport.use(new locatStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());

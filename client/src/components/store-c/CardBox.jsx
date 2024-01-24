@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect,useState } from 'react'
 import Card from './card'
-function CardBox({items}) {
+function CardBox({items,style=""}) {
   // Setting Data
 
     let [product,setProduct]=useState([{}]);
@@ -12,12 +12,12 @@ function CardBox({items}) {
         console.log("Working");
         setProduct(pureData);
       }
-      // getData(items);
+      getData(items);
 
     },[]);
 
   return (
-    <div className='flex justify-between'>
+    <div className={`grid ${style} place-items-center gap-10`}>
       {product.map((value,index)=>{
         return <Card data={value} key={index}/>
       })}

@@ -7,6 +7,10 @@ import Bg from "../assets/Bg.png";
 import CardBox from "../components/store-c/CardBox";
 import Signup from "../components/main/signup";
 import Login from "../components/main/login";
+import Button from "../components/landing-c/Button";
+import Booking from "../components/landing-c/booking";
+import Footer from "../components/main/Footer";
+import { Link } from "react-router-dom";
 
 function landing() {
   let btns = [
@@ -17,20 +21,22 @@ function landing() {
     ["Contact Us", "#contactus"],
   ];
 
-  let [login,setLogin]=useState(false);
-  let [signup,setSignup]=useState(false);
+  let [login, setLogin] = useState(false);
+  let [signup, setSignup] = useState(false);
 
-  function handellogin(){
+  function handellogin() {
     setLogin(!login);
   }
-  function handelsignup(){
+  function handelsignup() {
     setSignup(!signup);
   }
 
   return (
     <>
-      {login?<Login quit={handellogin}/>:null}
-      {signup?<Signup quit={handelsignup}/>:null}
+      {/* Login Sign Up */}
+      {login ? <Login quit={handellogin} /> : null}
+      {signup ? <Signup quit={handelsignup} /> : null}
+
       <img
         src={Bg}
         alt=""
@@ -47,19 +53,28 @@ function landing() {
           <Heading />
         </div>
       </main>
-      <section className="px-[5%]">
-        <div className="h-[75vh] mt-20">
+      <section className="">
+        <div className="h-[75vh] mt-20 px-[5%]">
           <Info />
           {/* Card Component */}
 
-          <div className="h-3/4 py-20">
-            <CardBox items={4} />
-            <div>
-
-            </div>
+          <div className="h-3/4 pt-20">
+            <CardBox items={4} style="grid-cols-4" />
+          </div>
+          <div className="text-center m-2">
+           <Link to="/store"> <Button text="View More" style="bg-gray-900"/></Link>
           </div>
         </div>
       </section>
+
+      <section className="h-[55vh] mt-20 px-[5%] py-1">
+        {/* Booking */}
+        <div className="my-20">
+          <Booking />
+        </div>
+      </section>
+
+        <Footer />
     </>
   );
 }

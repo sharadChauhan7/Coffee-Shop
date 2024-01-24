@@ -5,12 +5,12 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'footer-texture': "url('/img/footer-texture.png')",
+        'booking': "url('./src/assets/Booking.svg')",
         'wood':"url('./src/assets/Wood.svg')"
       },
       borderColor:{
         'Black':"#000"
-      }
+      },
     },
   },
   plugins: [],
