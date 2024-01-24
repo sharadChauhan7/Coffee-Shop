@@ -8,22 +8,3 @@ main()
 async function main() {
   await mongoose.connect('mongodb://127.0.0.1:27017/coffee');
 }
-
-
-const userSchema= new mongoose.Schema({
-    phone:{
-        type:Number,
-        required:true,
-        min:1000000000,
-        max:9999999999,
-    },
-    email:{
-        type:String,
-    }
-});
-
-userSchema.plugin(passportLocalMongoose);
-
-const User=mongoose.model("user",userSchema);
-
-module.exports=User;

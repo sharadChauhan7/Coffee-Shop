@@ -12,7 +12,7 @@ function CardBox({items}) {
         console.log("Working");
         setProduct(pureData);
       }
-      getData(items);
+      // getData(items);
 
     },[]);
 
@@ -21,7 +21,6 @@ function CardBox({items}) {
       {product.map((value,index)=>{
         return <Card data={value} key={index}/>
       })}
-      {/* <Card/> */}
     </div>
   )
 }

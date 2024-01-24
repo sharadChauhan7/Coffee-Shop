@@ -5,6 +5,7 @@ import { Heading } from "../components/landing-c/Head";
 import Bg from "../assets/Bg.png";
 
 import CardBox from "../components/store-c/CardBox";
+import Signup from "../components/main/signup";
 import Login from "../components/main/login";
 
 function landing() {
@@ -16,15 +17,20 @@ function landing() {
     ["Contact Us", "#contactus"],
   ];
 
-  let [login,setLogin]=useState(true);
+  let [login,setLogin]=useState(false);
+  let [signup,setSignup]=useState(false);
 
-  function quit(){
+  function handellogin(){
     setLogin(!login);
+  }
+  function handelsignup(){
+    setSignup(!signup);
   }
 
   return (
     <>
-      {login?<Login quit={quit}/>:null}
+      {login?<Login quit={handellogin}/>:null}
+      {signup?<Signup quit={handelsignup}/>:null}
       <img
         src={Bg}
         alt=""
@@ -35,7 +41,7 @@ function landing() {
           <div className="bg-white mt-5 h-12 rounded-3xl flex items-center justify-center text-sm px-5">
             <Tab btns={btns} />
           </div>
-          <Tabsearch />
+          <Tabsearch handellogin={handellogin} handelsignup={handelsignup} />
         </div>
         <div className="mt-[20%]">
           <Heading />

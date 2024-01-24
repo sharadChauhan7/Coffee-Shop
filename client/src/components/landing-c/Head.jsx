@@ -3,9 +3,11 @@ import { CiSearch } from "react-icons/ci";
 import { IoBagOutline } from "react-icons/io5";
 import Button from "./Button";
 import Wood from "../../assets/Logo.png";
+import { CiUser } from "react-icons/ci";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Heading() {
-  // console.log(Wood);
   return (
     <div className="flex flex-col gap-10">
       <h1 className="text-7xl font-bold text-white">LIFE IS BETTER</h1>
@@ -28,8 +30,10 @@ function Tab({ btns }) {
   );
 }
 
-function Tabsearch() {
+function Tabsearch({handellogin,handelsignup}) {
+  let [popup, setPopup] = useState(false);
   return (
+    <>
     <div className="bg-white border mt-5 h-12 rounded-3xl gap-2 flex items-center justify-center text-xl px-5">
       <a href="#">
         <CiSearch />
@@ -37,13 +41,33 @@ function Tabsearch() {
       <a href="#">
         <IoBagOutline />
       </a>
+      <button
+        onClick={() => {
+          setPopup((n) => !n);
+        }}
+      >
+        <CiUser />
+      </button>
     </div>
+    <div>
+
+        {popup ? (
+            <div className="absolute top-20 right-[29%] w-36 h-36 bg-white rounded-3xl flex flex-col gap-2">
+              <button onClick={()=>{handellogin();setPopup((n)=>!n)}} className="mt-4 text-xl font-semibold text-gray-600">Login</button>
+              <button onClick={()=>{handelsignup();setPopup((n)=>!n)}}className="mt-4 text-xl font-semibold text-gray-600">Signup</button>
+            </div>
+          ) : null}
+    </div>
+    </>
   );
 }
 
 function Info() {
   return (
-    <div className="w-[100%] rounded-3xl h-48 border overflow-hidden bg-wood bg-cover px-28 py-5 flex" id="aboutus">
+    <div
+      className="w-[100%] rounded-3xl h-48 border overflow-hidden bg-wood bg-cover px-28 py-5 flex"
+      id="aboutus"
+    >
       <div className="flex w-[20%]">
         <img src={Wood} alt="" />
       </div>
