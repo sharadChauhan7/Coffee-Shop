@@ -4,21 +4,20 @@ import Card from './card'
 function CardBox({items,style=""}) {
   // Setting Data
 
-    let [product,setProduct]=useState([{}]);
+    let [products,setProducts]=useState([{}]);
     useEffect( ()=>{
       async function getData(items){
         let data =await fetch(`https://fake-coffee-api.vercel.app/api?limit=${items}`);
         let pureData= await data.json();
-        console.log("Working");
-        setProduct(pureData);
+        setProducts(pureData);
       }
-      getData(items);
+      getData(items); 
 
     },[]);
 
   return (
     <div className={`grid ${style} place-items-center gap-10`}>
-      {product.map((value,index)=>{
+      {products.map((value,index)=>{
         return <Card data={value} key={index}/>
       })}
     </div>

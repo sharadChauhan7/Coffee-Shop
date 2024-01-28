@@ -62,7 +62,7 @@ function landing() {
             <CardBox items={4} style="grid-cols-4" />
           </div>
           <div className="text-center m-2">
-           <Link to="/store"> <Button text="View More" style="bg-gray-900"/></Link>
+           <Link to="/store"> View-More</Link>
           </div>
         </div>
       </section>

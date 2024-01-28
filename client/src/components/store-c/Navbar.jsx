@@ -10,7 +10,7 @@ import { CiUser } from "react-icons/ci";
 // State
 import { useState } from "react";
 
-function Navbar() {
+function Navbar({handellogin,handelsignup}) {
     let [popup, setPopup] = useState(false);
   return (
     <div className="h-20 bg-[#0D0D0D] fixed top-0 w-full">
