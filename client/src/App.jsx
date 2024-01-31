@@ -4,6 +4,9 @@ import Test from "./pages/test";
 import Landing from "./pages/landing";
 import Store from "./pages/store";
 import Product from "./pages/Product";
+import { useState,useEffect } from "react";
+
+// Import axios
 
 function App() {
   let {userId}=useParams();

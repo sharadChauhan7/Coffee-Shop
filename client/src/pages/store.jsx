@@ -3,6 +3,7 @@ import Navbar from "../components/store-c/Navbar";
 import CardBox from "../components/store-c/CardBox";
 import Signup from "../components/main/signup";
 import Login from "../components/main/login";
+import Cart from "../components/store-c/cart";
 import { useState } from "react";
 
 import { Link } from 'react-router-dom'
@@ -17,13 +18,21 @@ function store() {
   function handelsignup() {
     setSignup(!signup);
   }
+
+    // Cart state
+
+    let [popcart,setPopcart]=useState(false);
+    function handelPopcart(){
+      setPopcart(!popcart);
+    }
   return (
     <div>
       {/* Login Sign Up */}
       {login ? <Login quit={handellogin} /> : null}
       {signup ? <Signup quit={handelsignup} /> : null}
+      {popcart ? <Cart quit={handelPopcart} /> : null}
 
-      <Navbar   handellogin={handellogin} handelsignup={handelsignup} />
+      <Navbar   handellogin={handellogin} handelsignup={handelsignup} handelcart={handelPopcart} />
         <div className="px-[5%] text-3xl my-10 mt-32"><Link className="navbar-item text-gray-500" activeclassname="is-active" to="/">
               Home
             </Link> | <button>Store</button> </div>

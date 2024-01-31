@@ -6,18 +6,25 @@ const session = require('express-session');
 const passport = require('passport');
 const locatStrategy=require('passport-local');
 const cors=require('cors');
+const cookieParser = require('cookie-parser');
 
 
 const User=require('./model/user');
 
 const auth=require('./routs/auth.js');
+const cart=require('./routs/cart.js');
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-app.use(cors());
+var corsOptions = {
+  origin: 'http://localhost:5173',
+  optionsSuccessStatus: 200,
+  credentials: true, // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+app.use(cors(corsOptions));
 
 app.use(passport.initialize());
-
+app.use(cookieParser("secretcode"))
 
 const sessionOption={
   secret: 'keyboard cat',
@@ -37,24 +44,9 @@ passport.use(new locatStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.post("/signup",async(req,res)=>{
-    try{
-        let {username,email,phone,password}=req.body;
-        let newUser= await new User({username ,email ,phone});
-        console.log(newUser);
-        let result = await User.register( newUser, password);
-        res.status(200).json({result: req.body,sucess:true, message: "User Signup Sucessfully"});
-    }
-    catch(e){
-        console.log(e);
-        res.send("Error");
-    }
-});
+app.use('/auth',auth);
+app.use('/cart',cart);
 
-// app.post("/login",passport.authenticate('local',{failureRedirect:'/5173'}),(req,res)=>{
-//     res.status(200).send("Login Sucessfully");
-// })
-// app.use("/",auth);
 
 app.listen(port,()=>{
     console.log("Port is Listening");

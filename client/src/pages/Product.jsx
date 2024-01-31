@@ -8,11 +8,20 @@ import Size from "../components/product-c/size";
 import Service from "../components/product-c/service";
 import Quantity from "../components/product-c/quantity";
 import Description from "../components/product-c/description";
+import Cart from "../components/store-c/cart";
+import axios from 'axios';
 
 function Product() {
   let { userId } = useParams();
   let [item, setItem] = useState([{}]);
   useEffect(() => {
+
+    // Retrieve cart data from sessionStorage when the app starts
+    const savedCart = sessionStorage.getItem('cart');
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
+
     async function getData(key) {
       let data = await fetch(`https://fake-coffee-api.vercel.app/api/${key}`);
       let pureData = await data.json();
@@ -21,12 +30,12 @@ function Product() {
     getData(userId);
   }, []);
   // For Size
-  let [size, setSize] = useState("sm");
+  let [size, setSize] = useState("S");
   function handelSize(e) {
     setSize(e.target.value);
   }
   // For Service
-  let [service, setService] = useState("dine");
+  let [service, setService] = useState("Sent with Courier");
   function handelService(e) {
     setService(e.target.value);
   }
@@ -44,9 +53,44 @@ function Product() {
   // Discount
   let discount = (item.price * 25) / 100;
   discount = Math.round(discount * 100) / 100;
+
+  // Cart state
+
+  let [popcart,setPopcart]=useState(false);
+  function handelPopcart(){
+    setPopcart(!popcart);
+  }
+
+  let [cart, setCart] = useState([]);
+  async function handelCart() {
+    let itemObj = {
+      name: item.name,
+      price: item.price,
+      size: size,
+      service: service,
+      quantity: quantity,
+      image_url: item.image_url,
+      id: item.id,
+    };
+
+    // Store cart data in node sesseion storage
+    const savedCart = async()=>{
+      const res=await axios.post('http://localhost:3000/cart',itemObj,{
+        withCredentials: true, // Ensure cookies are sent with the request
+      });
+      console.log(res);
+    }
+    savedCart();
+
+    setCart([...cart, itemObj]);
+  }
+
+
   return (
     <div>
-      <Navbar />
+      {/* Cart */}
+        {popcart?<Cart quit={handelPopcart} cartItems={cart}/>:null}
+      <Navbar handelcart={handelPopcart} cartItems={cart} />
       {/* Link for Home and store */}
       <div className="px-[5%] text-3xl my-10 mt-32">
         <Link
@@ -71,7 +115,7 @@ function Product() {
       {/* Left */}
       <div className="flex px-[5%] gap-10 justify-center">
         <div className="w-2/5 pt-10">
-          <div  className="sticky top-48 bg-gray-100 rounded-3xl">
+          <div  className="sticky top-48 bg-gray-100 rounded-3xl -z-10">
             <img src={item.image_url} alt="" />
           </div>
         </div>
@@ -92,6 +136,7 @@ function Product() {
               <Size handelSize={handelSize} size={size} />
               <Service handelService={handelService} service={service} />
               <Quantity handleQuantity={handelQuantity} quantity={quantity} />
+              <button className=" border rounded-3xl bg-black text-white text-xl w-40 py-2 active:bg-gray-500" onClick={handelCart}>Add to Cart</button>
             </div>
           </div>
           <Description

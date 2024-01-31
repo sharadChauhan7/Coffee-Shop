@@ -2,6 +2,7 @@ import React from 'react'
 import { IoClose } from "react-icons/io5";
 import './login.css'
 import { useState } from 'react';
+import axios from 'axios';
 
 function signup({quit}) {
     let [user,setUser]=useState({});
@@ -13,14 +14,16 @@ function signup({quit}) {
     async function handleSubmit(e){
       e.preventDefault();
 
-      const res = await fetch('http://localhost:3000/signup ', {
-        method: "POST", 
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
-      console.log(res);
+      const res = await axios.post('http://localhost:3000/auth/signup',user);
+      if(res.status===200){
+        console.log(res.data);
+        quit();
+      }
+      else{
+        console.log("Some Error Occured");
+        console.log(res);
+        quit();
+      }
     }
   return (
 

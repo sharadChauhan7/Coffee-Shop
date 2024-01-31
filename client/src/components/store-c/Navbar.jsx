@@ -6,12 +6,23 @@ import { CiHeart } from "react-icons/ci";
 import { GoBell } from "react-icons/go";
 import { IoBagOutline } from "react-icons/io5";
 import { CiUser } from "react-icons/ci";
-
+import { useEffect } from "react";
 // State
 import { useState } from "react";
 
-function Navbar({handellogin,handelsignup}) {
-    let [popup, setPopup] = useState(false);
+function Navbar({ handellogin, handelsignup, handelcart, }) {
+  let [num, setNum] = useState(0);
+  useEffect(() => {
+    async function getNum() {
+      num = sessionStorage.getItem("cart");
+      num = await JSON.parse(num);
+      num = num.length;
+      setNum(num);
+    }
+    getNum();
+  }, []);
+
+  let [popup, setPopup] = useState(false);
   return (
     <div className="h-20 bg-[#0D0D0D] fixed top-0 w-full">
       <div className="flex items-center justify-between w-4/5 mx-auto h-full">
@@ -36,22 +47,44 @@ function Navbar({handellogin,handelsignup}) {
           <h1 className="text-white font-medium">
             <GoBell />
           </h1>
-          <h1 className="text-white font-medium">
+          <h1 className="text-white font-medium flex" onClick={handelcart}>
             <IoBagOutline />
+            <span className="relative text-base rounded-full h-6 w-6 text-center right-4 bg-white text-black bottom-2 border">
+              {num}
+            </span>
           </h1>
 
           <h1 className="text-white font-medium">|</h1>
-          <button className="text-white font-medium" onClick={() => {
-                setPopup((n) => !n);
-              }}>
-              <CiUser />
+          <button
+            className="text-white font-medium"
+            onClick={() => {
+              setPopup((n) => !n);
+            }}
+          >
+            <CiUser />
           </button>
 
-            {/* Popup */}
-            {popup ? (
+          {/* Popup */}
+          {popup ? (
             <div className="absolute top-24 right-[6%] w-36 h-32 bg-black rounded-3xl flex flex-col gap-2">
-              <button onClick={()=>{handellogin();setPopup((n)=>!n)}} className="mt-4 text-xl font-semibold text-white">Login</button>
-              <button onClick={()=>{handelsignup();setPopup((n)=>!n)}}className="mt-4 text-xl font-semibold text-white">Signup</button>
+              <button
+                onClick={() => {
+                  handellogin();
+                  setPopup((n) => !n);
+                }}
+                className="mt-4 text-xl font-semibold text-white"
+              >
+                Login
+              </button>
+              <button
+                onClick={() => {
+                  handelsignup();
+                  setPopup((n) => !n);
+                }}
+                className="mt-4 text-xl font-semibold text-white"
+              >
+                Signup
+              </button>
             </div>
           ) : null}
         </div>
