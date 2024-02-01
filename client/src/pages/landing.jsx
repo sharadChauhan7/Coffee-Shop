@@ -7,6 +7,7 @@ import Bg from "../assets/Bg.png";
 import CardBox from "../components/store-c/CardBox";
 import Signup from "../components/main/signup";
 import Login from "../components/main/login";
+import Cart from "../components/store-c/cart";
 import Button from "../components/landing-c/Button";
 import Booking from "../components/landing-c/booking";
 import Footer from "../components/main/Footer";
@@ -23,6 +24,11 @@ function landing() {
 
   let [login, setLogin] = useState(false);
   let [signup, setSignup] = useState(false);
+  let [popcart, setPopcart] = useState(false);
+
+  function handelPopcart() {
+    setPopcart(!popcart);
+  }
 
   function handellogin() {
     setLogin(!login);
@@ -36,6 +42,7 @@ function landing() {
       {/* Login Sign Up */}
       {login ? <Login quit={handellogin} /> : null}
       {signup ? <Signup quit={handelsignup} /> : null}
+      {popcart ? <Cart quit={handelPopcart} /> : null}
 
       <img
         src={Bg}
@@ -47,7 +54,7 @@ function landing() {
           <div className="bg-white mt-5 h-12 rounded-3xl flex items-center justify-center text-sm px-5">
             <Tab btns={btns} />
           </div>
-          <Tabsearch handellogin={handellogin} handelsignup={handelsignup} />
+          <Tabsearch handellogin={handellogin} handelsignup={handelsignup} quit={handelPopcart}  />
         </div>
         <div className="mt-[20%]">
           <Heading />

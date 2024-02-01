@@ -17,6 +17,7 @@ function Product() {
 
   // Setting Cart
   let [cart, setCart] = useState([]);
+// console.log(cart);
 
   async function handelCart() {
     let itemObj = {
@@ -28,43 +29,39 @@ function Product() {
       image_url: item.image_url,
       id: item.id,
     };
-
-    // Store cart data in node sesseion storage
-    const savedCart = async () => {
-      setCart([...cart, itemObj]);
-      const res = await axios.post(
-        "http://localhost:3000/cart",
-        {cart:cart},
-        {
-          withCredentials: true,
-          headers:{
-            'Content-Type':'application/json'
-          }
-        }
-      );
-      console.log(res.data);
-    };
-    savedCart();
+    setCart([...cart, itemObj]);
   }
   // UseEffect
   useEffect(() => {
-    async function Cart(cart) {
-      let res = await axios.get("http://localhost:3000/cart");
-      if (res.status === 200) {
-        console.log(res.data);
-        // setCart(res.data);
+    async function getCart() {
+      // Get cart data from local storage
+      let cart2 =  localStorage.getItem("cart");
+      let cartObj = await JSON.parse(cart2);
+      if(cartObj!=null){
+        setCart(cartObj);
       }
     }
+    getCart();
 
     async function getData(key) {
       let data = await fetch(`https://fake-coffee-api.vercel.app/api/${key}`);
       let pureData = await data.json();
       setItem(pureData[0]);
     }
-    Cart(cart);
-
     getData(userId);
   }, []);
+
+
+  // Storing Cart Data in local storage
+
+  useEffect(() => {
+      const setCart = async () => {
+        // Set cart data from local storage
+        localStorage.setItem("cart", JSON.stringify(cart));
+      };
+      setCart();
+    }, [cart]);
+
   // For Size
   let [size, setSize] = useState("S");
   function handelSize(e) {

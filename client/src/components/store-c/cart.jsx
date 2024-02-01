@@ -2,16 +2,21 @@ import React from "react";
 import "../main/login.css";
 import { IoClose } from "react-icons/io5";
 import Quantity from "../product-c/quantity";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import axios from "axios";
 
-function cart({ quit, cartItems }) {
+function cart({ quit, }) {
+  // Setting Cart
+
+  let [cartItems, setCartItems] = useState([]);
+
   useEffect(() => {
     async function setCart() {
       const getCart = async () => {
-        const res = await axios.get("http://localhost:3000/cart");
-        console.log("Req from cart");
-        console.log(res.data);
+        // Get cart data from local storage
+        let cart = localStorage.getItem("cart");
+        let cartObj = JSON.parse(cart);
+        setCartItems(cartObj);
       };
       getCart();
     }
@@ -40,7 +45,7 @@ function cart({ quit, cartItems }) {
           </div>
           {/* Cart Body */}
           <div className=" overflow-y-scroll">
-            {cartItems.length != 0 ? (
+            {(cartItems && cartItems.length) ? (
               cartItems.map((item, index) => {
                 return (
                   <div

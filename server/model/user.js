@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
+const cart=require('./cart');
 
 main()
 .then((res)=>{console.log("Connection is up")})
@@ -22,9 +23,9 @@ const userSchema = new mongoose.Schema({
     type:String,
   },
   cart:[{
-    type:Schema.Types.ObjectId,
+    type:mongoose.Schema.Types.ObjectId,
     ref:"cart"
-  }],
+  },],
 });
 
 userSchema.plugin(passportLocalMongoose);

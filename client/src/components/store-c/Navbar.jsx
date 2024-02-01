@@ -14,8 +14,8 @@ function Navbar({ handellogin, handelsignup, handelcart, cartItems }) {
   let [num, setNum] = useState(0);
   useEffect(() => {
     async function getNum() {
-      num = cartItems.length;
-      setNum(num);
+      // let a=cartItems.length;
+      // setNum(a);
     }
     getNum();
   }, []);

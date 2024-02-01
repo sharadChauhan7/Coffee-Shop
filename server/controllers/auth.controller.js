@@ -6,7 +6,7 @@ module.exports.Login = async (req, res, next) => {
 
   console.log(req.user);
   console.log(req.session);
-    res.send("LogedIn");
+  res.send("LogedIn");
 };
 
 module.exports.Signup = async (req, res, next) => {
@@ -32,11 +32,5 @@ module.exports.Logout = async (req, res, next) => {
 }
 
 module.exports.Islogin = async (req, res, next) => {
-  if(req.user){
-    console.log(req.user);
-    res.status(200).send({result:true});
-  }
-  else{
-    res.status(200).send({result:false});
-  }
+  res.send("logedIn User");
 }

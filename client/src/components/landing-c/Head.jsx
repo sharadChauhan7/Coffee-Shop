@@ -5,6 +5,7 @@ import Button from "./Button";
 import Wood from "../../assets/Logo.png";
 import { CiUser } from "react-icons/ci";
 import { useState,useEffect } from "react";
+import Cart from "../store-c/cart";
 import axios from "axios";
 
 function Heading() {
@@ -30,19 +31,19 @@ function Tab({ btns }) {
   );
 }
 
-function Tabsearch({handellogin,handelsignup}) {
+function Tabsearch({handellogin,handelsignup,quit,state}) {
   let [popup, setPopup] = useState(false);
   // Check if user is logged in
   let [user,setUser]=useState(false);
 
   useEffect(()=>{
-    async function getUser(){
-      const res=await axios.get('http://localhost:3000/auth/islogin');
-      console.log(res.data);
-      // setUser(res.data.result);
+    async function getinfo(){
+      const res= await axios.get('http://localhost:3000/auth/islogin');
+
+      console.log(res);
     }
-    getUser();
-  })
+    getinfo();
+  },[popup])
 
   return (
     <>
@@ -50,7 +51,7 @@ function Tabsearch({handellogin,handelsignup}) {
       <a href="#">
         <CiSearch />
       </a>
-      <a href="#">
+      <a onClick={quit}>
         <IoBagOutline />
       </a>
       <button
