@@ -16,12 +16,12 @@ const cart=require('./routs/cart.js');
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-var corsOptions = {
-  origin: 'http://localhost:5173',
-  optionsSuccessStatus: 200,
-  credentials: true, // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-app.use(cors(corsOptions));
+// var corsOptions = {
+//   origin: 'http://localhost:5173',
+//   optionsSuccessStatus: 200,
+//   credentials: true, // some legacy browsers (IE11, various SmartTVs) choke on 204
+// }
+app.use(cors());
 
 app.use(passport.initialize());
 app.use(cookieParser("secretcode"))

@@ -20,7 +20,11 @@ const userSchema = new mongoose.Schema({
   },
   email:{
     type:String,
-  }
+  },
+  cart:[{
+    type:Schema.Types.ObjectId,
+    ref:"cart"
+  }],
 });
 
 userSchema.plugin(passportLocalMongoose);

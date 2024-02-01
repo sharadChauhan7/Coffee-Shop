@@ -2,7 +2,10 @@ const User = require("../model/user");
 const passport = require("passport");
 
 module.exports.Login = async (req, res, next) => {
-  console.log(req.user.username);
+  // Add an empty cart in the session if there is no cart
+
+  console.log(req.user);
+  console.log(req.session);
     res.send("LogedIn");
 };
 
@@ -26,4 +29,14 @@ module.exports.Logout = async (req, res, next) => {
     console.log(req.user);
     res.status(200).send('LogedOut');
   });
+}
+
+module.exports.Islogin = async (req, res, next) => {
+  if(req.user){
+    console.log(req.user);
+    res.status(200).send({result:true});
+  }
+  else{
+    res.status(200).send({result:false});
+  }
 }

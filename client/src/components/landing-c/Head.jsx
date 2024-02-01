@@ -4,8 +4,8 @@ import { IoBagOutline } from "react-icons/io5";
 import Button from "./Button";
 import Wood from "../../assets/Logo.png";
 import { CiUser } from "react-icons/ci";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState,useEffect } from "react";
+import axios from "axios";
 
 function Heading() {
   return (
@@ -32,6 +32,18 @@ function Tab({ btns }) {
 
 function Tabsearch({handellogin,handelsignup}) {
   let [popup, setPopup] = useState(false);
+  // Check if user is logged in
+  let [user,setUser]=useState(false);
+
+  useEffect(()=>{
+    async function getUser(){
+      const res=await axios.get('http://localhost:3000/auth/islogin');
+      console.log(res.data);
+      // setUser(res.data.result);
+    }
+    getUser();
+  })
+
   return (
     <>
     <div className="bg-white border mt-5 h-12 rounded-3xl gap-2 flex items-center justify-center text-xl px-5">

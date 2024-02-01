@@ -9,17 +9,51 @@ import Service from "../components/product-c/service";
 import Quantity from "../components/product-c/quantity";
 import Description from "../components/product-c/description";
 import Cart from "../components/store-c/cart";
-import axios from 'axios';
+import axios from "axios";
 
 function Product() {
   let { userId } = useParams();
   let [item, setItem] = useState([{}]);
-  useEffect(() => {
 
-    // Retrieve cart data from sessionStorage when the app starts
-    const savedCart = sessionStorage.getItem('cart');
-    if (savedCart) {
-      setCart(JSON.parse(savedCart));
+  // Setting Cart
+  let [cart, setCart] = useState([]);
+
+  async function handelCart() {
+    let itemObj = {
+      name: item.name,
+      price: item.price,
+      size: size,
+      service: service,
+      quantity: quantity,
+      image_url: item.image_url,
+      id: item.id,
+    };
+
+    // Store cart data in node sesseion storage
+    const savedCart = async () => {
+      setCart([...cart, itemObj]);
+      const res = await axios.post(
+        "http://localhost:3000/cart",
+        {cart:cart},
+        {
+          withCredentials: true,
+          headers:{
+            'Content-Type':'application/json'
+          }
+        }
+      );
+      console.log(res.data);
+    };
+    savedCart();
+  }
+  // UseEffect
+  useEffect(() => {
+    async function Cart(cart) {
+      let res = await axios.get("http://localhost:3000/cart");
+      if (res.status === 200) {
+        console.log(res.data);
+        // setCart(res.data);
+      }
     }
 
     async function getData(key) {
@@ -27,6 +61,8 @@ function Product() {
       let pureData = await data.json();
       setItem(pureData[0]);
     }
+    Cart(cart);
+
     getData(userId);
   }, []);
   // For Size
@@ -49,47 +85,21 @@ function Product() {
     setQuantity(num);
   }
 
-
   // Discount
   let discount = (item.price * 25) / 100;
   discount = Math.round(discount * 100) / 100;
 
   // Cart state
 
-  let [popcart,setPopcart]=useState(false);
-  function handelPopcart(){
+  let [popcart, setPopcart] = useState(false);
+  function handelPopcart() {
     setPopcart(!popcart);
   }
-
-  let [cart, setCart] = useState([]);
-  async function handelCart() {
-    let itemObj = {
-      name: item.name,
-      price: item.price,
-      size: size,
-      service: service,
-      quantity: quantity,
-      image_url: item.image_url,
-      id: item.id,
-    };
-
-    // Store cart data in node sesseion storage
-    const savedCart = async()=>{
-      const res=await axios.post('http://localhost:3000/cart',itemObj,{
-        withCredentials: true, // Ensure cookies are sent with the request
-      });
-      console.log(res);
-    }
-    savedCart();
-
-    setCart([...cart, itemObj]);
-  }
-
 
   return (
     <div>
       {/* Cart */}
-        {popcart?<Cart quit={handelPopcart} cartItems={cart}/>:null}
+      {popcart ? <Cart quit={handelPopcart} cartItems={cart} /> : null}
       <Navbar handelcart={handelPopcart} cartItems={cart} />
       {/* Link for Home and store */}
       <div className="px-[5%] text-3xl my-10 mt-32">
@@ -115,7 +125,7 @@ function Product() {
       {/* Left */}
       <div className="flex px-[5%] gap-10 justify-center">
         <div className="w-2/5 pt-10">
-          <div  className="sticky top-48 bg-gray-100 rounded-3xl -z-10">
+          <div className="sticky top-48 bg-gray-100 rounded-3xl -z-10">
             <img src={item.image_url} alt="" />
           </div>
         </div>
@@ -136,7 +146,12 @@ function Product() {
               <Size handelSize={handelSize} size={size} />
               <Service handelService={handelService} service={service} />
               <Quantity handleQuantity={handelQuantity} quantity={quantity} />
-              <button className=" border rounded-3xl bg-black text-white text-xl w-40 py-2 active:bg-gray-500" onClick={handelCart}>Add to Cart</button>
+              <button
+                className=" border rounded-3xl bg-black text-white text-xl w-40 py-2 active:bg-gray-500"
+                onClick={handelCart}
+              >
+                Add to Cart
+              </button>
             </div>
           </div>
           <Description

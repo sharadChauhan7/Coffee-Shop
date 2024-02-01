@@ -10,13 +10,11 @@ import { useEffect } from "react";
 // State
 import { useState } from "react";
 
-function Navbar({ handellogin, handelsignup, handelcart, }) {
+function Navbar({ handellogin, handelsignup, handelcart, cartItems }) {
   let [num, setNum] = useState(0);
   useEffect(() => {
     async function getNum() {
-      num = sessionStorage.getItem("cart");
-      num = await JSON.parse(num);
-      num = num.length;
+      num = cartItems.length;
       setNum(num);
     }
     getNum();
