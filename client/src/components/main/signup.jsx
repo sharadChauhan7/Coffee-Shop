@@ -2,10 +2,16 @@ import React from 'react'
 import { IoClose } from "react-icons/io5";
 import './login.css'
 import { useState } from 'react';
+import {auth} from '../../config/firebase'
+import { createUserWithEmailAndPassword } from "firebase/auth";
+// Import navigate
+import {useNavigate} from 'react-router-dom';
+import {useUser} from '../../config/user'
 import axios from 'axios';
 
 function signup({quit}) {
     let [user,setUser]=useState({});
+    let {setIsLoggedIn}=useUser();
 
     function handlechange(e){
       setUser({...user,[e.target.name]:e.target.value})
@@ -13,16 +19,17 @@ function signup({quit}) {
 
     async function handleSubmit(e){
       e.preventDefault();
-
-      const res = await axios.post('http://localhost:3000/auth/signup',user);
-      if(res.status===200){
-        console.log(res.data);
+      try{
+        let userData=await createUserWithEmailAndPassword(auth,user.email,user.password);
+        // Set a token in local storage
+        localStorage.setItem('token',userData.user.accessToken);
+        localStorage.setItem('user',JSON.stringify(userData.user));
+        setIsLoggedIn(true);
         quit();
+        useNavigate('/store');
       }
-      else{
-        console.log("Some Error Occured");
-        console.log(res);
-        quit();
+      catch(err){
+        console.log(err)
       }
     }
   return (
@@ -36,7 +43,7 @@ function signup({quit}) {
       <div className="body">
         <form action="#" className=" items-stretch grid grid-cols-2 gap-8">
               <input type="text" name="username" id="name" placeholder="Username" className="focus:outline-none" onChange={handlechange}/>
-              <input type="number" name='phone' placeholder='Phone no.'  className="focus:outline-none" onChange={handlechange}/>
+              <input type="text" name='phone' placeholder='Phone no.'  className="focus:outline-none" onChange={handlechange}/>
               <input type="email" name='email'placeholder='Email' className="focus:outline-none col-span-2" onChange={handlechange} />
               <input type="password" name="password" placeholder="Password" className="focus:outline-none col-span-2"onChange={handlechange}/>
               

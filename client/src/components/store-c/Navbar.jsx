@@ -6,21 +6,20 @@ import { CiHeart } from "react-icons/ci";
 import { GoBell } from "react-icons/go";
 import { IoBagOutline } from "react-icons/io5";
 import { CiUser } from "react-icons/ci";
+import Logout from "../main/logout"
 import { useEffect } from "react";
+
 // State
 import { useState } from "react";
+import { usePopup } from "../../config/popup";
+import { useUser } from "../../config/user";
 
-function Navbar({ handellogin, handelsignup, handelcart, cartItems }) {
-  let [num, setNum] = useState(0);
-  useEffect(() => {
-    async function getNum() {
-      // let a=cartItems.length;
-      // setNum(a);
-    }
-    getNum();
-  }, []);
+function Navbar({ }) {
 
   let [popup, setPopup] = useState(false);
+  let { handellogin, handelsignup, handelPopcart } = usePopup();
+  let {isLoggedIn} = useUser();
+  console.log(isLoggedIn);
   return (
     <div className="h-20 bg-[#0D0D0D] fixed top-0 w-full">
       <div className="flex items-center justify-between w-4/5 mx-auto h-full">
@@ -45,10 +44,9 @@ function Navbar({ handellogin, handelsignup, handelcart, cartItems }) {
           <h1 className="text-white font-medium">
             <GoBell />
           </h1>
-          <h1 className="text-white font-medium flex" onClick={handelcart}>
+          <h1 className="text-white font-medium flex" onClick={handelPopcart}>
             <IoBagOutline />
-            <span className="relative text-base rounded-full h-6 w-6 text-center right-4 bg-white text-black bottom-2 border">
-              {num}
+            <span className="relative text-base rounded-full h-6 w-6 text-center right-4 bg-white text-black bottom-2 border">0
             </span>
           </h1>
 
@@ -63,7 +61,7 @@ function Navbar({ handellogin, handelsignup, handelcart, cartItems }) {
           </button>
 
           {/* Popup */}
-          {popup ? (
+          {popup ? !isLoggedIn? (
             <div className="absolute top-24 right-[6%] w-36 h-32 bg-black rounded-3xl flex flex-col gap-2">
               <button
                 onClick={() => {
@@ -84,7 +82,7 @@ function Navbar({ handellogin, handelsignup, handelcart, cartItems }) {
                 Signup
               </button>
             </div>
-          ) : null}
+          ):<Logout/> : null}
         </div>
       </div>
     </div>

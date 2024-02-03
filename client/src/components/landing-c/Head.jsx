@@ -2,10 +2,12 @@ import React from "react";
 import { CiSearch } from "react-icons/ci";
 import { IoBagOutline } from "react-icons/io5";
 import Button from "./Button";
-import Wood from "../../assets/Logo.png";
+import Wood from "../../assets/Logo.png"
+import Logout from "../main/logout";
 import { CiUser } from "react-icons/ci";
 import { useState,useEffect } from "react";
-import Cart from "../store-c/cart";
+import {usePopup} from "../../config/popup"
+import {useUser} from "../../config/user"
 import axios from "axios";
 
 function Heading() {
@@ -31,32 +33,23 @@ function Tab({ btns }) {
   );
 }
 
-function Tabsearch({handellogin,handelsignup,quit,state}) {
-  let [popup, setPopup] = useState(false);
+function Tabsearch() {
   // Check if user is logged in
-  let [user,setUser]=useState(false);
-
-  useEffect(()=>{
-    async function getinfo(){
-      const res= await axios.get('http://localhost:3000/auth/islogin');
-
-      console.log(res);
-    }
-    getinfo();
-  },[popup])
-
+  let {isLoggedIn}=useUser();
+  let [popup,setPopup]=useState(false);
+  let {handelPopcart,handellogin,handelsignup}=usePopup();
   return (
     <>
     <div className="bg-white border mt-5 h-12 rounded-3xl gap-2 flex items-center justify-center text-xl px-5">
       <a href="#">
         <CiSearch />
       </a>
-      <a onClick={quit}>
+      <a onClick={handelPopcart}>
         <IoBagOutline />
       </a>
       <button
         onClick={() => {
-          setPopup((n) => !n);
+          setPopup(!popup);
         }}
       >
         <CiUser />
@@ -64,12 +57,12 @@ function Tabsearch({handellogin,handelsignup,quit,state}) {
     </div>
     <div>
 
-        {popup ? (
+        {popup ?!isLoggedIn? (
             <div className="absolute top-20 right-[29%] w-36 h-32 bg-white rounded-3xl flex flex-col gap-2">
-              <button onClick={()=>{handellogin();setPopup((n)=>!n)}} className="mt-4 text-xl font-semibold text-gray-600">Login</button>
-              <button onClick={()=>{handelsignup();setPopup((n)=>!n)}}className="mt-4 text-xl font-semibold text-gray-600">Signup</button>
+              <button onClick={() => {handellogin();setPopup((n) => !n);}} className="mt-4 text-xl font-semibold text-gray-600">Login</button>
+              <button onClick={() => {handelsignup();setPopup((n) => !n);}}className="mt-4 text-xl font-semibold text-gray-600">Signup</button>
             </div>
-          ) : null}
+          ):<Logout bg="bg-white" text="text-gray-600" home={true}/>: null}
     </div>
     </>
   );

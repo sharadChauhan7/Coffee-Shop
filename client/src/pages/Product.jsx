@@ -9,6 +9,7 @@ import Service from "../components/product-c/service";
 import Quantity from "../components/product-c/quantity";
 import Description from "../components/product-c/description";
 import Cart from "../components/store-c/cart";
+import {usePopup} from '../config/popup'
 import axios from "axios";
 
 function Product() {
@@ -87,17 +88,16 @@ function Product() {
   discount = Math.round(discount * 100) / 100;
 
   // Cart state
+  let {popup,handelPopcart}=usePopup();
 
-  let [popcart, setPopcart] = useState(false);
-  function handelPopcart() {
-    setPopcart(!popcart);
-  }
 
   return (
     <div>
       {/* Cart */}
-      {popcart ? <Cart quit={handelPopcart} cartItems={cart} /> : null}
-      <Navbar handelcart={handelPopcart} cartItems={cart} />
+      {popup ? <Cart quit={handelPopcart}/> : null}
+      {signup ? <Signup quit={handelsignup} /> : null}
+      {popup ? <Cart quit={handelPopcart} /> : null}
+      <Navbar/>
       {/* Link for Home and store */}
       <div className="px-[5%] text-3xl my-10 mt-32">
         <Link
