@@ -8,6 +8,8 @@ import {auth} from '../../config/firebase'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import {useUser} from '../../config/user'
+import {ValidateLogin} from '../../util/validation.js'
+import { toast } from "react-toastify";
 
 function login({ quit }) {
   let [user, setUser] = useState({});
@@ -19,15 +21,22 @@ function login({ quit }) {
   async function handleSubmit(e) {
     e.preventDefault();
     try{
+      let {error}=ValidateLogin.validate(user);
+      if(error){
+        toast.error(error.details[0].message,{position:'top-center'});
+        return;
+      }
       let userData=await signInWithEmailAndPassword(auth,user.email,user.password);
       // Set a token in local storage
       localStorage.setItem('token',userData.user.accessToken);
       localStorage.setItem('user',JSON.stringify(userData.user));
       setIsLoggedIn(true);
       quit();
+      toast.success('User Logged In',{position:'top-right'});
     }
     catch(err){
-      console.log(err)
+      toast.error(err.message,{position:'top-right'});
+      console.dir(err);
     }
     
   }

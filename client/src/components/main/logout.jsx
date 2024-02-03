@@ -1,7 +1,8 @@
 import React from "react";
 import { auth } from "../../config/firebase";
 import { useUser } from "../../config/user";
-function logout({ bg = "bg-black", text = "text-white",home=false }) {
+import {toast} from 'react-toastify';
+function logout({ bg = "bg-black", text = "text-white",home=false, quit }) {
 
   let { setIsLoggedIn } = useUser();
   let view=home?"top-20 right-[28%]":"top-24 right-[6%]";
@@ -11,6 +12,7 @@ function logout({ bg = "bg-black", text = "text-white",home=false }) {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setIsLoggedIn(false);
+    toast.success('User Logged Out');
   }
   return (
     <div
@@ -19,6 +21,7 @@ function logout({ bg = "bg-black", text = "text-white",home=false }) {
       <button
         onClick={() => {
           logout();
+          quit();
         }}
         className={`text-xl font-semibold ${text}`}
       >

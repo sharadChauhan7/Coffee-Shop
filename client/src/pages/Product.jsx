@@ -1,21 +1,25 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Navbar from "../components/store-c/Navbar";
 import Footer from "../components/main/Footer";
 import { Link } from "react-router-dom";
+import {usePopup} from '../config/popup'
+import {toast} from 'react-toastify'
+import axios from "axios";
+// Component
+import Navbar from "../components/store-c/Navbar";
 import Size from "../components/product-c/size";
 import Service from "../components/product-c/service";
 import Quantity from "../components/product-c/quantity";
 import Description from "../components/product-c/description";
 import Cart from "../components/store-c/cart";
-import {usePopup} from '../config/popup'
-import axios from "axios";
+import Signup from "../components/main/signup";
+import Login from "../components/main/login";
+
 
 function Product() {
   let { userId } = useParams();
   let [item, setItem] = useState([{}]);
-
   // Setting Cart
   let [cart, setCart] = useState([]);
 // console.log(cart);
@@ -31,6 +35,8 @@ function Product() {
       id: item.id,
     };
     setCart([...cart, itemObj]);
+    toast.success('Item Added to Cart');
+    setNum(JSON.parse(localStorage.getItem('cart'))?.length+1);
   }
   // UseEffect
   useEffect(() => {
@@ -88,7 +94,7 @@ function Product() {
   discount = Math.round(discount * 100) / 100;
 
   // Cart state
-  let {popup,handelPopcart}=usePopup();
+  let {popup,handelPopcart,signup,handelsignup,login,handellogin,setNum}=usePopup();
 
 
   return (
@@ -96,7 +102,7 @@ function Product() {
       {/* Cart */}
       {popup ? <Cart quit={handelPopcart}/> : null}
       {signup ? <Signup quit={handelsignup} /> : null}
-      {popup ? <Cart quit={handelPopcart} /> : null}
+      {login ? <Login quit={handellogin} /> : null}
       <Navbar/>
       {/* Link for Home and store */}
       <div className="px-[5%] text-3xl my-10 mt-32">

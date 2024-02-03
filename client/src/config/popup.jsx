@@ -10,6 +10,9 @@ export function PopupState(props){
     let [login, setLogin] = useState(false);
 
     let [signup, setSignup] = useState(false);
+
+    let [num, setNum] = useState(JSON.parse(localStorage.getItem('cart'))?.length);
+
   
     function handellogin() {
       setLogin(!login);
@@ -22,7 +25,7 @@ export function PopupState(props){
         setPopup(!popup);
     }
     return (
-        <popupContext.Provider value={{popup,handelPopcart,login,handellogin,signup,handelsignup}}>
+        <popupContext.Provider value={{popup,handelPopcart,login,handellogin,signup,handelsignup,num,setNum}}>
             {props.children}
         </popupContext.Provider>
     )

@@ -37,15 +37,17 @@ function Tabsearch() {
   // Check if user is logged in
   let {isLoggedIn}=useUser();
   let [popup,setPopup]=useState(false);
-  let {handelPopcart,handellogin,handelsignup}=usePopup();
+  let {handelPopcart,handellogin,handelsignup,num}=usePopup();
   return (
     <>
     <div className="bg-white border mt-5 h-12 rounded-3xl gap-2 flex items-center justify-center text-xl px-5">
       <a href="#">
         <CiSearch />
       </a>
-      <a onClick={handelPopcart}>
+      <a onClick={handelPopcart} className="flex items-center">
         <IoBagOutline />
+        {num > 0 ? (<span className="relative text-base rounded-full w-6 right-3 text-center bg-white text-black bottom-2 border">{num}
+            </span>):null}
       </a>
       <button
         onClick={() => {
@@ -62,7 +64,7 @@ function Tabsearch() {
               <button onClick={() => {handellogin();setPopup((n) => !n);}} className="mt-4 text-xl font-semibold text-gray-600">Login</button>
               <button onClick={() => {handelsignup();setPopup((n) => !n);}}className="mt-4 text-xl font-semibold text-gray-600">Signup</button>
             </div>
-          ):<Logout bg="bg-white" text="text-gray-600" home={true}/>: null}
+          ):<Logout bg="bg-white" text="text-gray-600" home={true} quit={setPopup}/>: null}
     </div>
     </>
   );

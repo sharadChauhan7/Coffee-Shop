@@ -7,7 +7,8 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 // Import navigate
 import {useNavigate} from 'react-router-dom';
 import {useUser} from '../../config/user'
-import axios from 'axios';
+import {ValidateSignup}  from '../../util/validation.js'
+import { toast } from 'react-toastify';
 
 function signup({quit}) {
     let [user,setUser]=useState({});
@@ -20,16 +21,22 @@ function signup({quit}) {
     async function handleSubmit(e){
       e.preventDefault();
       try{
+        let {error}=ValidateSignup.validate(user);
+        if(error){
+          // console.log(error.details[0].message);
+          toast.error(error.details[0].message,{position:'top-center'});
+          return;
+        }
         let userData=await createUserWithEmailAndPassword(auth,user.email,user.password);
         // Set a token in local storage
         localStorage.setItem('token',userData.user.accessToken);
         localStorage.setItem('user',JSON.stringify(userData.user));
         setIsLoggedIn(true);
         quit();
-        useNavigate('/store');
+        toast.success('User Created',{position:'top-right'});
       }
       catch(err){
-        console.log(err)
+        toast.error(err.message,{position:'top-center'});
       }
     }
   return (

@@ -14,12 +14,13 @@ import { useState } from "react";
 import { usePopup } from "../../config/popup";
 import { useUser } from "../../config/user";
 
-function Navbar({ }) {
+function Navbar() {
 
   let [popup, setPopup] = useState(false);
-  let { handellogin, handelsignup, handelPopcart } = usePopup();
+  let { handellogin, handelsignup, handelPopcart,num } = usePopup();
   let {isLoggedIn} = useUser();
-  console.log(isLoggedIn);
+ 
+
   return (
     <div className="h-20 bg-[#0D0D0D] fixed top-0 w-full">
       <div className="flex items-center justify-between w-4/5 mx-auto h-full">
@@ -46,8 +47,8 @@ function Navbar({ }) {
           </h1>
           <h1 className="text-white font-medium flex" onClick={handelPopcart}>
             <IoBagOutline />
-            <span className="relative text-base rounded-full h-6 w-6 text-center right-4 bg-white text-black bottom-2 border">0
-            </span>
+            {num > 0 ? (<span className="relative text-base rounded-full h-6 w-6 text-center right-4 bg-white text-black bottom-2 border">{num}
+            </span>):null}
           </h1>
 
           <h1 className="text-white font-medium">|</h1>
@@ -82,7 +83,7 @@ function Navbar({ }) {
                 Signup
               </button>
             </div>
-          ):<Logout/> : null}
+          ):<Logout quit={setPopup}/> : null}
         </div>
       </div>
     </div>
