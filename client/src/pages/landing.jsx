@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import { usePopup } from "../config/popup";
 
 function landing() {
-  let btns = [
+  const btns = [
     ["Home", "#home"],
     ["About Us", "#aboutus"],
     ["Services", "#services"],
@@ -22,7 +22,7 @@ function landing() {
   ];
 
 
-  let { popup, handelPopcart,login,handellogin,signup,handelsignup } = usePopup();
+  const { popup, handelPopcart,login,handellogin,signup,handelsignup } = usePopup();
   return (
     <>
       {/* Login Sign Up */}

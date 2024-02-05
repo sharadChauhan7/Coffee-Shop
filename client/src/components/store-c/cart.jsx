@@ -2,10 +2,11 @@ import React from "react";
 import "../main/login.css";
 import { IoClose } from "react-icons/io5";
 import Quantity from "../product-c/quantity";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
-function cart({ quit, }) {
+function cart({ quit }) {
   // Setting Cart
 
   let [cartItems, setCartItems] = useState([]);
@@ -36,16 +37,16 @@ function cart({ quit, }) {
     <>
       <div className="overlay">
         {/* Cart Body */}
-        <div className="bg-white p-8 absolute top-1/4 h-2/3  overflow-y-scroll left-1/4 right-1/4 opacity-100">
-          <div className="head  justify-between">
+        <div className="bg-white px-8 py-4 fixed top-1/4 h-2/3 left-1/4 right-1/4 opacity-100">
+          <div className="head  justify-between relative">
             <h2 className="text-5xl font-medium">Cart</h2>
             <button onClick={quit} className="text-4xl relative -top-4">
               <IoClose />
             </button>
           </div>
           {/* Cart Body */}
-          <div className=" overflow-y-scroll">
-            {(cartItems && cartItems.length) ? (
+          <div className="overflow-y-scroll h-96">
+            {cartItems && cartItems.length ? (
               cartItems.map((item, index) => {
                 return (
                   <div
@@ -73,11 +74,34 @@ function cart({ quit, }) {
                 );
               })
             ) : (
-              <div className="flex justify-center items-center h-96">
+              <div className="flex justify-center items-center h-full">
                 <h1 className="text-5xl">Cart is Empty</h1>
               </div>
             )}
           </div>
+          {/* Checkout */}
+          {cartItems ? (
+            cartItems.length ? (
+              <div className="flex justify-between  relative bottom-0 w-[95%]  pt-2 items-center mb-3">
+                <h2 className="text-4xl font-medium">Total</h2>
+                <h2 className="text-4xl font-medium">
+                  &#36;
+                  {cartItems.reduce((acc, item) => {
+                    return acc + item.price * item.quantity;
+                  }, 0)}
+                </h2>
+
+                <Link
+                  to="/user/product/checkout"
+                  className="text-3xl text-white bg-black w-36 h-14 hover:bg-gray-900"
+                >
+                  <button className="text-2xl text-white bg-black w-32 h-14 hover:bg-gray-900" onClick={quit}>
+                    Checkout
+                  </button>
+                </Link>
+              </div>
+            ) : null
+          ) : null}
         </div>
       </div>
     </>

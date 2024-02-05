@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function card({ data }) {
   return (
     <Link
-      to={`/product/${data.id}`}
+      to={`/user/product/${data.id}`}
       className="w-60 h-72  overflow-hidde shadow-md rounded-3xl border"
     >
       <div className="w-60 h-72  overflow-hidde shadow-md rounded-3xl border">

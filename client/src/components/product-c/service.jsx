@@ -24,7 +24,7 @@ function service({ handelService, service }) {
             <div key={index}>
               <input
                 type="radio"
-                name="size"
+                name="service"
                 id={value}
                 value={value}
                 className=" hidden"

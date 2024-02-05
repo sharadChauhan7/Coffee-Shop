@@ -13,6 +13,10 @@ async function main() {
 // User Database Schema
 
 const userSchema = new mongoose.Schema({
+  username:{
+    type:String,
+    require:true,
+  },
   phone:{
     type:Number,
     require:true,
@@ -26,9 +30,16 @@ const userSchema = new mongoose.Schema({
     type:mongoose.Schema.Types.ObjectId,
     ref:"cart"
   },],
+  password:{
+    type:String,
+    require:true,
+  },
+  address:{
+    type:String,
+    require:true,
+    default:"",
+  },
 });
-
-userSchema.plugin(passportLocalMongoose);
 const User=mongoose.model("user",userSchema);
 
 module.exports=User;

@@ -1,19 +1,25 @@
-import { BrowserRouter as Router, Routes, Route,useParams } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useParams,
+} from "react-router-dom";
 import "./App.css";
 import Test from "./pages/test";
 import Landing from "./pages/landing";
 import Store from "./pages/store";
 import Product from "./pages/Product";
-import React from 'react';
-import { ToastContainer } from 'react-toastify';
+import Checkout from "./pages/checkout";
+import React from "react";
+import Privaterout from "./util/Privaterout";
+import { ToastContainer } from "react-toastify";
 
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
 
 // Import axios
 
 function App() {
-  let {userId}=useParams();
+  let { userId } = useParams();
   return (
     <>
       <ToastContainer />
@@ -21,7 +27,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/store" element={<Store />} />
-          <Route path="/product/:userId" element={<Product />} />
+
+          <Route path="/user" element={<Privaterout />}>
+            <Route path="product/:userId" element={<Product />} />
+            <Route path='product/checkout' element={<Checkout />} />
+            <Route path="test" element={<Test />} />
+          </Route>
         </Routes>
       </Router>
     </>

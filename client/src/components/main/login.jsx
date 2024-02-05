@@ -3,10 +3,8 @@ import './login.css'
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
 import axios from "axios";
-import {redirect} from 'react-router-dom';
 import {auth} from '../../config/firebase'
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import {useUser} from '../../config/user'
 import {ValidateLogin} from '../../util/validation.js'
 import { toast } from "react-toastify";
@@ -28,6 +26,12 @@ function login({ quit }) {
       }
       let userData=await signInWithEmailAndPassword(auth,user.email,user.password);
       // Set a token in local storage
+
+      let res=await axios.get(`http://localhost:3000/auth/login/${userData.user.email}`);
+      userData.user.providerData[0].phoneNumber=res.data[0].phone;
+      userData.user.providerData[0].displayName=res.data[0].username;
+      userData.user.providerData[0].address=res.data[0].address;
+
       localStorage.setItem('token',userData.user.accessToken);
       localStorage.setItem('user',JSON.stringify(userData.user));
       setIsLoggedIn(true);

@@ -13,6 +13,7 @@
     "axios": "^1.6.7",
     "firebase": "^10.8.0",
     "joi": "^17.12.1",
+    "razorpay": "^2.9.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",

@@ -7,16 +7,17 @@ const popupContext = createContext(null);
 export function PopupState(props){
     const [popup, setPopup] = useState(false);
     
-    let [login, setLogin] = useState(false);
+    const [login, setLogin] = useState(false);
 
-    let [signup, setSignup] = useState(false);
+    const [signup, setSignup] = useState(false);
 
-    let [num, setNum] = useState(JSON.parse(localStorage.getItem('cart'))?.length);
+    const [num, setNum] = useState(JSON.parse(localStorage.getItem('cart'))?.length);
 
   
     function handellogin() {
       setLogin(!login);
     }
+    
     function handelsignup() {
       setSignup(!signup);
     }

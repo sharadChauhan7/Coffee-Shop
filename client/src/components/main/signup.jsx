@@ -4,6 +4,7 @@ import './login.css'
 import { useState } from 'react';
 import {auth} from '../../config/firebase'
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import axios from 'axios';
 // Import navigate
 import {useNavigate} from 'react-router-dom';
 import {useUser} from '../../config/user'
@@ -18,9 +19,11 @@ function signup({quit}) {
       setUser({...user,[e.target.name]:e.target.value})
     }
 
+
     async function handleSubmit(e){
       e.preventDefault();
       try{
+        console.log(user);
         let {error}=ValidateSignup.validate(user);
         if(error){
           // console.log(error.details[0].message);
@@ -28,10 +31,18 @@ function signup({quit}) {
           return;
         }
         let userData=await createUserWithEmailAndPassword(auth,user.email,user.password);
+        
+        userData.user.providerData[0].phoneNumber=user.phone;
+        userData.user.providerData[0].displayName=user.username;
+        userData.user.providerData[0].address='';
+
         // Set a token in local storage
         localStorage.setItem('token',userData.user.accessToken);
         localStorage.setItem('user',JSON.stringify(userData.user));
         setIsLoggedIn(true);
+        let res=await axios.post('http://localhost:3000/auth/signup',user);
+        console.log(res.result);
+
         quit();
         toast.success('User Created',{position:'top-right'});
       }
@@ -53,7 +64,6 @@ function signup({quit}) {
               <input type="text" name='phone' placeholder='Phone no.'  className="focus:outline-none" onChange={handlechange}/>
               <input type="email" name='email'placeholder='Email' className="focus:outline-none col-span-2" onChange={handlechange} />
               <input type="password" name="password" placeholder="Password" className="focus:outline-none col-span-2"onChange={handlechange}/>
-              
               <button className="mt-8 text-3xl text-white bg-black w-full h-14 hover:bg-gray-900 col-span-2" onClick={handleSubmit}>SignUp</button>
         </form> 
       </div>

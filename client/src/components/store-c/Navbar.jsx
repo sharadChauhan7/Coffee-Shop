@@ -27,7 +27,7 @@ function Navbar() {
         <div className="flex items-center gap-4">
           <h1 className="text-3xl text-white font-semibold flex">
             <CiLocationOn />
-            Mathura, India
+            Damium Coffee 
           </h1>
         </div>
         <div className="text-center w-2/5">
