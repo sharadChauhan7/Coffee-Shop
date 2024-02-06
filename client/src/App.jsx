@@ -13,6 +13,7 @@ import Checkout from "./pages/checkout";
 import React from "react";
 import Privaterout from "./util/Privaterout";
 import { ToastContainer } from "react-toastify";
+import PaymentSuccess from "./pages/paymentsuccess";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -27,7 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/store" element={<Store />} />
-
+          <Route path="/paymentsuccess" element={<PaymentSuccess />} />
           <Route path="/user" element={<Privaterout />}>
             <Route path="product/:userId" element={<Product />} />
             <Route path='product/checkout' element={<Checkout />} />

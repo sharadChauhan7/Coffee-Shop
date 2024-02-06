@@ -1,6 +1,7 @@
 const Razorpay = require("razorpay");
 const instance = require("../config/razorpay.js");
-
+const crypto=require('crypto');
+require('dotenv').config({path:'./.env'});
 module.exports.checkout = async (req, res) => {
   try{
     let amount=req.body.amount;
@@ -9,7 +10,6 @@ module.exports.checkout = async (req, res) => {
         currency: "INR",
       };
       let result= await instance.orders.create(options);
-        console.log(result);
         res.status(200).send(result);
   }
   catch(e){
@@ -20,8 +20,21 @@ module.exports.checkout = async (req, res) => {
 
 module.exports.verification = async (req, res) => {
   try{
-      console.log(req.body);
-        res.status(200).send("Verification Successfull");
+      let{razorpay_payment_id,razorpay_order_id,razorpay_signature}=req.body;
+      const body=razorpay_order_id + "|" + razorpay_payment_id;
+      console.log(process.env.RAZORPAY_KEY_SECRET);
+      const expectedSignature = crypto.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
+      .update(body.toString())
+      .digest('hex');
+
+
+      if(expectedSignature===razorpay_signature){
+        res.redirect("http://localhost:5173/paymentsuccess");
+        // res.status(200).send("Success");
+      }
+      else{
+        res.status(400).send("Error");
+      }
   }
   catch(e){
     console.log(e);

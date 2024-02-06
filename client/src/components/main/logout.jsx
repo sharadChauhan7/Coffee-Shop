@@ -2,6 +2,7 @@ import React from "react";
 import { auth } from "../../config/firebase";
 import { useUser } from "../../config/user";
 import {toast} from 'react-toastify';
+import axios from "axios";
 function logout({ bg = "bg-black", text = "text-white",home=false, quit }) {
 
   let { setIsLoggedIn } = useUser();
@@ -10,9 +11,20 @@ function logout({ bg = "bg-black", text = "text-white",home=false, quit }) {
   async function logout() {
     await auth.signOut();
     localStorage.removeItem("token");
+    // Fetching User Data
+    let userData=JSON.parse(localStorage.getItem("user"));
+    userData=userData.email;
+
     localStorage.removeItem("user");
     setIsLoggedIn(false);
     toast.success('User Logged Out');
+    let cartData = JSON.parse(localStorage.getItem("cart"));
+    localStorage.removeItem("cart");
+    
+    let result=await axios.post("http://localhost:3000/cart",{cartData,userData});
+    console.log(result);
+
+
   }
   return (
     <div

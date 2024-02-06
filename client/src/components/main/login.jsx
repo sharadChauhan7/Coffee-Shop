@@ -10,6 +10,14 @@ import {ValidateLogin} from '../../util/validation.js'
 import { toast } from "react-toastify";
 
 function login({ quit }) {
+
+  async function settingCart(email){
+    console.log(email);
+    let result = await axios.get(`http://localhost:3000/cart/${email}`);
+    // console.log(result.data);
+    localStorage.setItem("cart", JSON.stringify(result.data));
+
+  }
   let [user, setUser] = useState({});
   let {setIsLoggedIn}=useUser();
   function handlechange(e) {
@@ -35,6 +43,7 @@ function login({ quit }) {
       localStorage.setItem('token',userData.user.accessToken);
       localStorage.setItem('user',JSON.stringify(userData.user));
       setIsLoggedIn(true);
+      settingCart(user.email);
       quit();
       toast.success('User Logged In',{position:'top-right'});
     }
