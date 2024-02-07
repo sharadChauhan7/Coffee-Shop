@@ -16,6 +16,8 @@ import Cart from "../components/store-c/cart";
 import Signup from "../components/main/signup";
 import Login from "../components/main/login";
 import Routes from "../components/main/routes";
+import { v4 as uuidv4 } from 'uuid';
+
 
 function Product() {
   let link = [["Home", "/"], ["Store", "/store"]];
@@ -35,6 +37,7 @@ function Product() {
       quantity: itemInfo.quantity,
       image_url: item.image_url,
       id: item.id,
+      uuid: uuidv4(),
     };
     setCart([...cart, itemObj]);
     toast.success("Item Added to Cart");
@@ -63,10 +66,10 @@ function Product() {
   // Storing Cart Data in local storage
 
   useEffect(() => {
-    const setCart = async () => {
+    const SetCart = async () => {
       localStorage.setItem("cart", JSON.stringify(cart));
     };
-    setCart();
+    SetCart();
   }, [cart]);
 
 
@@ -104,9 +107,9 @@ function Product() {
   return (
     <div>
       {/* Cart */}
-      {popup ? <Cart quit={handelPopcart} /> : null}
+      {popup ? <Cart quit={handelPopcart} prevCart={setCart}/> : null}
       {signup ? <Signup quit={handelsignup} /> : null}
-      {login ? <Login quit={handellogin} /> : null}
+      {login ? <Login quit={handellogin}  /> : null}
       <Navbar />
       {/* Link for Home and store */}
 

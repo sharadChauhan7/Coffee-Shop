@@ -5,8 +5,10 @@ import Quantity from "../product-c/quantity";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { MdDelete } from "react-icons/md";
 
-function cart({ quit }) {
+
+function cart({ quit,prevCart }) {
   // Setting Cart
 
   let [cartItems, setCartItems] = useState([]);
@@ -22,7 +24,16 @@ function cart({ quit }) {
       getCart();
     }
     setCart();
-  }, []);
+  }, [setCartItems]);
+
+  function deleteItem(id){
+    let newCart=cartItems.filter((item,index)=>{
+        return (item.uuid!=id);
+    });
+    localStorage.setItem("cart",JSON.stringify(newCart));
+    setCartItems(newCart);
+    prevCart(newCart);
+  }
 
   let itemObj = {
     name: "Coffee",
@@ -64,8 +75,9 @@ function cart({ quit }) {
                         <h3 className="text-xl font-medium">{item.service}</h3>
                       </div>
                     </div>
-                    <div className="flex gap-5 items-center">
-                      <Quantity quantity={item.quantity} />
+                    <div className="flex gap-2 flex-col items-center">
+                      <h2 className="text-2xl ml-auto" onClick={()=>{deleteItem(item.uuid)}}><MdDelete /></h2>
+                      <h1 className="font-medium text-xl bg-gray-400 px-2 rounded-2xl"><span className="text-xl font-medium">Qty :-</span> {item.quantity}</h1>
                       <h2 className="text-2xl font-medium">
                         &#36;{item.price * item.quantity}
                       </h2>

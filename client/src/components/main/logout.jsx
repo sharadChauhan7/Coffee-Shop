@@ -9,6 +9,7 @@ function logout({ bg = "bg-black", text = "text-white",home=false, quit }) {
   let view=home?"top-20 right-[28%]":"top-24 right-[6%]";
   
   async function logout() {
+   try{
     await auth.signOut();
     localStorage.removeItem("token");
     // Fetching User Data
@@ -21,10 +22,12 @@ function logout({ bg = "bg-black", text = "text-white",home=false, quit }) {
     let cartData = JSON.parse(localStorage.getItem("cart"));
     localStorage.removeItem("cart");
     
-    let result=await axios.post("http://localhost:3000/cart",{cartData,userData});
-    console.log(result);
-
-
+    await axios.post("http://localhost:3000/cart",{cartData,userData});
+   }
+   catch(e){
+    console.log(e);
+    toast.error("Something Went Wrong");
+   }
   }
   return (
     <div

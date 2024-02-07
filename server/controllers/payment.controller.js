@@ -22,15 +22,15 @@ module.exports.verification = async (req, res) => {
   try{
       let{razorpay_payment_id,razorpay_order_id,razorpay_signature}=req.body;
       const body=razorpay_order_id + "|" + razorpay_payment_id;
-      console.log(process.env.RAZORPAY_KEY_SECRET);
       const expectedSignature = crypto.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
       .update(body.toString())
       .digest('hex');
 
 
       if(expectedSignature===razorpay_signature){
+
+
         res.redirect("http://localhost:5173/paymentsuccess");
-        // res.status(200).send("Success");
       }
       else{
         res.status(400).send("Error");
