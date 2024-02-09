@@ -13,7 +13,11 @@ function ProductCard({handelCheckout ,total}) {
         </div>
         <div className='flex justify-start items-start flex-col'>
           <h1 className='text-3xl font-medium border-b-2 w-full mt-3'>View Cart</h1>
+<<<<<<< HEAD
           <button className='bg-black text-2xl text-white px-5 py-2 mt-4 w-full rounded-3xl h-14' onClick={handelCheckout}>Pay &#8377;{total}</button>
+=======
+          <button className='bg-black text-2xl text-white px-5 py-2 mt-4 w-full rounded-3xl h-14' onClick={handelCheckout}>Pay ${total}</button>
+>>>>>>> ea257d940443f721dfc1d0381627d21faa0a716b
         </div>
       </div>
       </>

@@ -1,4 +1,7 @@
 node_modules/
 .env
+<<<<<<< HEAD
 pr.csv
+=======
+>>>>>>> ea257d940443f721dfc1d0381627d21faa0a716b
 ```

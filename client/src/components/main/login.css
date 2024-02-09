@@ -7,7 +7,10 @@
     bottom: 0;
     left: 0;
     right: 0;
+<<<<<<< HEAD
     z-index: 10;
+=======
+>>>>>>> ea257d940443f721dfc1d0381627d21faa0a716b
     background-color: rgba(1, 0, 0,0.8);
 }
 .modal{

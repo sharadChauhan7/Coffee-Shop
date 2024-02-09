@@ -14,7 +14,11 @@ function card({ data }) {
             <h1 className="text-base font-bold">{data.name}</h1>
             <h1 className="w-14 text-center rounded-xl border">
               {" "}
+<<<<<<< HEAD
               &#8377;{data.price*80}
+=======
+              &#36;{data.price}
+>>>>>>> ea257d940443f721dfc1d0381627d21faa0a716b
             </h1>
           </div>
           <p className="text-sm">Region: {data.region}</p>

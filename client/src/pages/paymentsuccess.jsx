@@ -3,7 +3,10 @@ import Landing from './landing'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import { toast } from "react-toastify";
+<<<<<<< HEAD
 import BG from '../assets/CheckoutBg.png'
+=======
+>>>>>>> ea257d940443f721dfc1d0381627d21faa0a716b
 function paymentsuccess() {
 
   useEffect(()=>{
@@ -33,9 +36,13 @@ function paymentsuccess() {
                 </div>
             </div>
     </Link>
+<<<<<<< HEAD
     <div className='h-screen w-screen'>
       <img src={BG} alt=""  className='w-full h-full'/>
     </div>
+=======
+        <Landing/>
+>>>>>>> ea257d940443f721dfc1d0381627d21faa0a716b
     </>
   )
 }

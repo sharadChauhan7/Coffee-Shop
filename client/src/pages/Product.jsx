@@ -31,7 +31,11 @@ function Product() {
   async function handelCart() {
     let itemObj = {
       name: item.name,
+<<<<<<< HEAD
       price: (item.price - discount)*80,
+=======
+      price: item.price,
+>>>>>>> ea257d940443f721dfc1d0381627d21faa0a716b
       size: itemInfo.size,
       service: itemInfo.service,
       quantity: itemInfo.quantity,
@@ -129,9 +133,15 @@ function Product() {
           <div className="border-b-2 pb-4">
             <h1 className="text-5xl mb-4 font-bold">{item.name}</h1>
             <h2 className="text-3xl font-medium">
+<<<<<<< HEAD
             &#8377;{(item.price - discount)*80}{" "}
               <span className="line-through text-xl text-gray-500 ml-4">
                 {item.price*80}
+=======
+              &#36;{item.price - discount}{" "}
+              <span className="line-through text-xl text-gray-500 ml-4">
+                {item.price}
+>>>>>>> ea257d940443f721dfc1d0381627d21faa0a716b
               </span>
             </h2>
           </div>

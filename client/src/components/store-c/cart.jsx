@@ -79,7 +79,11 @@ function cart({ quit,prevCart }) {
                       <h2 className="text-2xl ml-auto" onClick={()=>{deleteItem(item.uuid)}}><MdDelete /></h2>
                       <h1 className="font-medium text-xl bg-gray-400 px-2 rounded-2xl"><span className="text-xl font-medium">Qty :-</span> {item.quantity}</h1>
                       <h2 className="text-2xl font-medium">
+<<<<<<< HEAD
                       &#8377;{item.price * item.quantity}
+=======
+                        &#36;{item.price * item.quantity}
+>>>>>>> ea257d940443f721dfc1d0381627d21faa0a716b
                       </h2>
                     </div>
                   </div>
@@ -97,7 +101,11 @@ function cart({ quit,prevCart }) {
               <div className="flex justify-between  relative bottom-0 w-[95%]  pt-2 items-center mb-3">
                 <h2 className="text-4xl font-medium">Total</h2>
                 <h2 className="text-4xl font-medium">
+<<<<<<< HEAD
                   &#8377;
+=======
+                  &#36;
+>>>>>>> ea257d940443f721dfc1d0381627d21faa0a716b
                   {cartItems.reduce((acc, item) => {
                     return acc + item.price * item.quantity;
                   }, 0)}
