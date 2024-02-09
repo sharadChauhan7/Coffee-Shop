@@ -22,11 +22,7 @@ function Navbar() {
  
 
   return (
-<<<<<<< HEAD
     <div className="h-20 bg-[#0D0D0D] fixed top-0 w-full z-20">
-=======
-    <div className="h-20 bg-[#0D0D0D] fixed top-0 w-full">
->>>>>>> ea257d940443f721dfc1d0381627d21faa0a716b
       <div className="flex items-center justify-between w-4/5 mx-auto h-full">
         <div className="flex items-center gap-4">
           <h1 className="text-3xl text-white font-semibold flex">

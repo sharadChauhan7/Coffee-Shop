@@ -9,7 +9,6 @@ import { usePopup } from '../config/popup'
 
 
 function checkout() {
-<<<<<<< HEAD
   const link = [["Home", "/"], ["Store", "/store"]];
 
   // hmr indavidate Because of this below line
@@ -18,37 +17,17 @@ function checkout() {
   // Total Amount
   const userdata = JSON.parse(localStorage.getItem('user')).providerData[0];
   const cartProducts = JSON.parse(localStorage.getItem('cart'));
-=======
-  const link = [["Home", "/"], ["Store", "/store"]]
-  let { popup, handelPopcart } = usePopup();
-
-  // Total Amount
-  let userdata = JSON.parse(localStorage.getItem('user')).providerData[0];
-  console.log(userdata);
-  let cartProducts = JSON.parse(localStorage.getItem('cart'));
->>>>>>> ea257d940443f721dfc1d0381627d21faa0a716b
 
   let total = 0;
   if (cartProducts != null) {
     for (let i = 0; i < cartProducts.length; i++) {
-<<<<<<< HEAD
       total = total + cartProducts[i].price*cartProducts[i].quantity;
-=======
-      total = total + cartProducts[i].price;
->>>>>>> ea257d940443f721dfc1d0381627d21faa0a716b
     }
   }
 
   async function handelCheckout() {
-<<<<<<< HEAD
     let order = await axios.post('http://localhost:3000/payment/checkout', { amount: (total * 100) });
     order = order.data;
-=======
-    console.log('checkout');
-    let order = await axios.post('http://localhost:3000/payment/checkout', { amount: (total * 100) });
-    order = order.data;
-    console.log(order);
->>>>>>> ea257d940443f721dfc1d0381627d21faa0a716b
     let key_id = await axios.get('http://localhost:3000/payment/key');
     key_id = key_id.data.key_id;
     const options = {
@@ -74,10 +53,6 @@ function checkout() {
     };
     const razor = new window.Razorpay(options);
     razor.open();
-<<<<<<< HEAD
-=======
-    console.log(options);
->>>>>>> ea257d940443f721dfc1d0381627d21faa0a716b
   }
 
   return (
