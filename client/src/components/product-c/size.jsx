@@ -6,9 +6,9 @@ function size({ handelSize, size }) {
     let style;
     return (
         <div className="flex flex-col gap-5">
-            <h1 className="text-4xl font-bold">Size</h1>
+            <h1 className="text-4xl font-bold max-cd:text-3xl">Size</h1>
             <div
-                className="flex gap-2"
+                className="flex gap-2  flex-wrap"
                 onChange={(e) => {
                     handelSize(e);
                 }}
@@ -16,13 +16,13 @@ function size({ handelSize, size }) {
                 {text.map((value, index) => {
                     {
                         if (value === size) {
-                            style = "bg-black text-white text-2xl px-6 py-2 mx-2";
+                            style = "bg-black text-white text-2xl px-6 py-2 mx-2 max-md:text-xl ";
                         } else {
-                            style = "border text-2xl px-6 bg-gray-200 py-2 mx-2";
+                            style = "border text-2xl px-6 bg-gray-200 py-2 mx-2 max-md:text-xl";
                         }
                     }
                     return (
-                        <div key={index}>
+                        <div key={index} className="my-4">
                             <input
                                 type="radio"
                                 name="size"

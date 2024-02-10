@@ -1,11 +1,11 @@
 import React from "react";
 
 function service({ handelService, service }) {
-    let text = ["Sent with Courier", "Drive Thru", "In Place"];
+    let text = ["Courier", "Drive Thru", "In Place"];
     let style;
   return (
     <div className="flex flex-col gap-5">
-      <h1 className="text-4xl font-bold">Service</h1>
+      <h1 className="text-4xl font-bold max-cd:text-3xl ">Service</h1>
       <div
         className="flex gap-2"
         onChange={(e) => {
@@ -15,9 +15,9 @@ function service({ handelService, service }) {
         {text.map((value, index) => {
           {
             if (value === service) {
-              style = "bg-black text-white text-xl px-6 py-2 mx-2";
+              style = "bg-black text-white text-xl px-6 py-2 mx-2 max-md:px-2";
             } else {
-              style = "border text-xl px-6 bg-gray-200 py-2 mx-2";
+              style = "border text-xl px-6 bg-gray-200 py-2 mx-2 max-md:px-2";
             }
           }
           return (
@@ -27,10 +27,10 @@ function service({ handelService, service }) {
                 name="service"
                 id={value}
                 value={value}
-                className=" hidden"
+                className="hidden"
               />
-              <label htmlFor={value} className={style}>
-                {value}
+              <label htmlFor={value} >
+                <div className={`${style} max-md:text-base border-2` }>{value}</div>
               </label>
             </div>
           );

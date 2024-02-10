@@ -15,7 +15,7 @@ function CardBox({items,style="",filteredData=null}) {
         setProducts(pureData);
       }
       if(filteredData==null){
-        getData();
+        getData(items);
       }
       else{
         setProducts(filteredData);

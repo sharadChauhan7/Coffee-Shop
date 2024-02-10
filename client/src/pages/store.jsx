@@ -52,12 +52,12 @@ function store() {
         <Routes Rout={link} btn="Store" />
       </div>
       <div className="flex px-[5%] w-[100vw] justify-between">
-        <div className="w-[20%]">
+        <div className="w-[20%] max-md:hidden ">
           {/* Filterrrr */}
-         <Filter filters={filters} handleChange={handleChange} />
+         <Filter filters={filters} handleChange={handleChange}/>
           </div>
-        <div className="w-[75%] mb-24">
-          <CardBox items={20} style="grid-cols-3" filteredData={sorted} />
+        <div className="w-[75%] mb-24 max-md:w-screen">
+          <CardBox items={20} style="grid-cols-3 max-sm:grid-cols-2 max-xs:grid-cols-1" filteredData={sorted} />
         </div>
       </div>
       <Footer />

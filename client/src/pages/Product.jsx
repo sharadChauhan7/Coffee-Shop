@@ -118,16 +118,16 @@ function Product() {
       <div className="px-[5%]">
         <Routes Rout={link} btn="Product" />
       </div>
-      <div className="flex px-[5%] gap-10 justify-center">
-        <div className="w-2/5 pt-10">
-          <div className="sticky top-48 bg-gray-100 rounded-3xl -z-10">
+      <div className="flex sm:px-[5%] gap-10 justify-center max-sm:flex-col max-sm:items-center">
+        <div className="w-2/5 pt-10 max-md:w-3/6 max-sm:w-4/5 max-xs:w-[97%]">
+          <div className="sticky top-48 bg-gray-100 rounded-3xl -z-10 w-full">
             <img src={item.image_url} alt="" />
           </div>
         </div>
         {/* Right */}
-        <div className="w-3/5 px-10 py-5 flex flex-col gap-5">
+        <div className="w-3/5 sm:px-10 py-5 flex flex-col gap-5 max-md:w-3/6 max-sm:w-4/5">
           <div className="border-b-2 pb-4">
-            <h1 className="text-5xl mb-4 font-bold">{item.name}</h1>
+            <h1 className="text-5xl mb-4 font-bold max-cd:text-4xl">{item.name}</h1>
             <h2 className="text-3xl font-medium">
             &#8377;{(item.price - discount)*80}{" "}
               <span className="line-through text-xl text-gray-500 ml-4">
