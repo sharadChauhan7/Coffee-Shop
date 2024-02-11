@@ -24,7 +24,7 @@ function Navbar() {
   const [navbarOpen,setNavbarOpen]=useState(false);
  console.log(popup)
   return (
-    <div className={`h-20 bg-[#0D0D0D] fixed top-0 w-full z-20 ${navbarOpen?'h-1/2':'h-20'}`}>
+    <div className={`h-20 bg-[#0D0D0D] fixed top-0 w-full z-20 ${navbarOpen?'h-[48vh]':'h-20'}`}>
       <div className="flex items-center justify-between w-4/5 mx-auto h-full max-cd:items-center max-cd:justify-evenly max-cd:flex-col">
         <div className={`max-cd:flex max-cd:justify-between max-cd:w-full ${navbarOpen?'max-cd:-mt-8':'max-cd:mt-4'}`}>
           <div>

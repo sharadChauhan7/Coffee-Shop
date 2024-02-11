@@ -57,7 +57,7 @@ function store() {
          <Filter filters={filters} handleChange={handleChange}/>
           </div>
         <div className="w-[75%] mb-24 max-md:w-screen">
-          <CardBox items={20} style="grid-cols-3 max-sm:grid-cols-2 max-xs:grid-cols-1" filteredData={sorted} />
+          <CardBox items={20} style=" grid grid-cols-3 max-sm:grid-cols-2 max-xs:grid-cols-1" filteredData={sorted} />
         </div>
       </div>
       <Footer />

@@ -24,7 +24,7 @@ function CardBox({items,style="",filteredData=null}) {
 
 
   return (
-    <div className={`grid ${style} place-items-center gap-10`}>
+    <div className={` ${style} place-items-center gap-10 mx-1 `}>
       {products?products.length>0?products.map((value,index)=>{
         return <Card data={value} key={index}/>
       }):<h1 className='px-5 text-5xl w-[30vw]'>Sorry NO Data Found.............</h1>:<h1 className='text-5xl w-[30vw] px-5 '>Loading............</h1>}

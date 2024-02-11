@@ -11,6 +11,7 @@ import Booking from "../components/landing-c/booking";
 import Footer from "../components/main/Footer";
 import { Link } from "react-router-dom";
 import { usePopup } from "../config/popup";
+import Newsletter from '../components/landing-c/newsletter'
 
 function landing() {
   const btns = [
@@ -33,40 +34,42 @@ function landing() {
       <img
         src={Bg}
         alt=""
-        className="w-full h-[85vh] position absolute -z-10 mb-2"
+        className="w-full cd:h-[85vh] ss:h-[75vh] h-[65vh] position absolute -z-10 mb-2 object-cover"
       />
-      <main className="px-[5%] h-[85vh] bg-cover" id="home">
+      <main className="px-[5%] h-[85vh] bg-cover " id="home">
         <div className=" flex  justify-center gap-10">
           <div className="bg-white mt-5 h-12 rounded-3xl flex items-center justify-center text-sm px-5">
-            <Tab btns={btns} />
+            {/* <Tab btns={btns} /> */}
           </div>
-          <Tabsearch />
+          {/* <Tabsearch /> */}
         </div>
-        <div className="mt-[20%]">
+        <div className="md:mt-[20%] sm:mt-[35%] mt-[45%]">
           <Heading />
         </div>
       </main>
       <section className="">
-        <div className="h-[75vh] mt-20 px-[5%]">
+        <div className="h-[75vh] mt-20 xs:px-[5%]">
           <Info />
           {/* Card Component */}
 
-          <div className="h-3/4 pt-20">
-            <CardBox items={4} style="grid-cols-4" />
+          <div className="h-3/4 pt-20 overflow-y-scroll px-[5%]">
+            <CardBox items={4} style="flex gap-10 " />
           </div>
           <div className="text-center m-2">
-           <Link to="/store"> View-More</Link>
+           <Link to="/store" className="py-3 px-6 rounded-3xl bg-black text-white"> View-More</Link>
           </div>
         </div>
       </section>
 
-      <section className="h-[55vh] mt-20 px-[5%] py-1">
+      <section className="h-[55vh] mt-20 xs:px-[5%] py-1">
         {/* Booking */}
         <div className="my-20">
           <Booking />
         </div>
       </section>
-
+        <section className="h-[30vh]">
+          <Newsletter/>
+        </section>
         <Footer />
     </>
   );

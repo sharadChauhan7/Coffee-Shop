@@ -12,9 +12,9 @@ import axios from "axios";
 
 function Heading() {
   return (
-    <div className="flex flex-col gap-10">
-      <h1 className="text-7xl font-bold text-white">LIFE IS BETTER</h1>
-      <h2 className="text-5xl font-medium text-white">WITH COFFEE</h2>
+    <div className="flex flex-col gap-10 ">
+      <h1 className="cd:text-7xl sm:text-6xl text-5xl font-bold text-white">LIFE IS BETTER</h1>
+      <h2 className="cd:text-5xl sm:text-4xl text-3xl font-medium text-white">WITH COFFEE</h2>
       <Button text="Order Now" link="store" />
     </div>
   );
@@ -73,13 +73,13 @@ function Tabsearch() {
 function Info() {
   return (
     <div
-      className="w-[100%] rounded-3xl h-48 border overflow-hidden bg-wood bg-cover px-28 py-5 flex"
+      className="w-[100%] rounded-3xl sm:h-48 border overflow-hidden bg-wood bg-cover md:px-28 xs:px-6 py-5 flex max-sm:flex-col gap-2 max-sm:items-center"
       id="aboutus"
     >
-      <div className="flex w-[20%]">
+      <div className="flex sm:w-[20%] ">
         <img src={Wood} alt="" />
       </div>
-      <div className="flex items-center  text-white w-[80%]">
+      <div className="flex items-center  text-white w-[80%] max-sm:text-sm">
         At Damiun Coffee Shop, we take immense pride in crafting each cup of
         coffee with passion and precision. Our skilled baristas curate a diverse
         selection of specialty coffees sourced from the finest beans across the
