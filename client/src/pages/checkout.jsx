@@ -23,6 +23,7 @@ function checkout() {
     for (let i = 0; i < cartProducts.length; i++) {
       total = total + cartProducts[i].price*cartProducts[i].quantity;
     }
+    total=total.toFixed(2);
   }
 
   async function handelCheckout() {

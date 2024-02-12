@@ -41,9 +41,6 @@ function Tabsearch() {
   return (
     <>
     <div className="bg-white border mt-5 h-12 rounded-3xl gap-2 flex items-center justify-center text-xl px-5">
-      <a href="#">
-        <CiSearch />
-      </a>
       <a onClick={handelPopcart} className="flex items-center">
         <IoBagOutline />
         {num > 0 ? (<span className="relative text-base rounded-full w-6 right-3 text-center bg-white text-black bottom-2 border">{num}

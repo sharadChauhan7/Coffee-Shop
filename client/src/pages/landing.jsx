@@ -17,7 +17,6 @@ function landing() {
   const btns = [
     ["Home", "#home"],
     ["About Us", "#aboutus"],
-    ["Services", "#services"],
     ["Store", "store"],
     ["Contact Us", "#contactus"],
   ];
