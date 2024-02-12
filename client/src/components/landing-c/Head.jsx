@@ -12,7 +12,7 @@ import axios from "axios";
 
 function Heading() {
   return (
-    <div className="flex flex-col gap-10 ">
+    <div className="flex flex-col md:gap-10 ss:gap-7 max-ss:gap-3">
       <h1 className="cd:text-7xl sm:text-6xl text-5xl font-bold text-white">LIFE IS BETTER</h1>
       <h2 className="cd:text-5xl sm:text-4xl text-3xl font-medium text-white">WITH COFFEE</h2>
       <Button text="Order Now" link="store" />

@@ -9,8 +9,8 @@ function newsletter() {
                 <h1 className='text-5xl max-sm:text-3xl'>Newsletter</h1>
                 <p className='my-4'>Subscribe and get 20% off your first purchase</p>
                 <form action="#" className='flex'>
-                  <input type="search" className=' w-10/12 mx-auto h-12 opacity-30 rounded-3xl px-4 max-sm:text-xl' placeholder='Your email...' />
-                  <button className='bg-white text-black w-2/12 min-w-24 mx-auto h-12 rounded-3xl'>Subscribe</button>
+                  <input type="search" className=' w-10/12 mx-auto h-12 max-ss:h-9 opacity-30 rounded-3xl px-4 max-sm:text-xl' placeholder='Your email...' />
+                  <button className='bg-white text-black w-2/12 min-w-24 mx-auto h-12 max-ss:h-9 rounded-3xl'>Subscribe</button>
 
                 </form>     
         </div>

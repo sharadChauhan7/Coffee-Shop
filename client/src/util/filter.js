@@ -1,3 +1,5 @@
+import { func } from "joi";
+
 async function filData(filters){
     let data= await getData();
     let newData= data.filter((value,index)=>{
@@ -22,4 +24,22 @@ async function getData(items=20){
     return pureData;
   }
 // Export this function so it can be used by store.jsx
-export  {filData,getData};
+
+// Search
+function searchBar(products,allitems,search){
+
+    let len=search.length;
+    if (Object.keys(products[0]).length != 0) {
+        let newobj = allitems.filter((item, data) => {
+          let value = item.name.slice(0, len);
+          let region=item.region.slice(0,len);
+          value = value.toUpperCase();
+          region=region.toUpperCase();
+  
+          let srch = search.toUpperCase();
+            return ((value==srch)|| (region==srch));
+        });
+        return newobj;
+    }
+}
+export  {filData,getData,searchBar};

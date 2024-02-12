@@ -39,7 +39,6 @@ function store() {
     }
       setFilters({ ...filters, [e.target.name]: e.target.value });
   }
-  // Cart state
   return (
     <div>
       {/* Login Sign Up */}

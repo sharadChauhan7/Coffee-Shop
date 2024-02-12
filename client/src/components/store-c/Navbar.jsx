@@ -18,11 +18,12 @@ import { useUser } from "../../config/user";
 function Navbar() {
 
   let [popup, setPopup] = useState(false);
-  let { handellogin, handelsignup, handelPopcart,num } = usePopup();
+  let { handellogin, handelsignup, handelPopcart,num ,search, handleSearch} = usePopup();
   let {isLoggedIn} = useUser();
 
   const [navbarOpen,setNavbarOpen]=useState(false);
- console.log(popup)
+
+  // Search
   return (
     <div className={`h-20 bg-[#0D0D0D] fixed top-0 w-full z-20 ${navbarOpen?'h-[48vh]':'h-20'}`}>
       <div className="flex items-center justify-between w-4/5 mx-auto h-full max-cd:items-center max-cd:justify-evenly max-cd:flex-col">
@@ -30,7 +31,7 @@ function Navbar() {
           <div>
           <h1 className="text-3xl text-white font-semibold flex max-xs:text-2xl">
             <CiLocationOn />
-            Damium Coffee 
+            Coffee 
           </h1>
           </div>
 
@@ -58,6 +59,7 @@ function Navbar() {
             type="search"
             placeholder="Search"
             className={` bg-transparent border-white border w-full rounded-3xl h-10 px-4 text-white ${navbarOpen?'':'max-cd:hidden'} `}
+            onChange={handleSearch}
           />
         </div>
         <div className={`flex items-center gap-4 text-3xl max-cd:flex-col max-cd:opacity-60  max-cd:w-3/5 max-ss:w-4/5 ${navbarOpen?'':'max-cd:hidden'}`}>

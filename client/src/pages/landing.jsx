@@ -36,23 +36,23 @@ function landing() {
         alt=""
         className="w-full cd:h-[85vh] ss:h-[75vh] h-[65vh] position absolute -z-10 mb-2 object-cover"
       />
-      <main className="px-[5%] h-[85vh] bg-cover " id="home">
+      <main className="px-[5%] cd:h-[85vh] ss:h-[75vh] h-[65vh] bg-cover " id="home">
         <div className=" flex  justify-center gap-10">
           <div className="bg-white mt-5 h-12 rounded-3xl flex items-center justify-center text-sm px-5">
-            {/* <Tab btns={btns} /> */}
+            <Tab btns={btns} />
           </div>
-          {/* <Tabsearch /> */}
+          <Tabsearch />
         </div>
-        <div className="md:mt-[20%] sm:mt-[35%] mt-[45%]">
+        <div className="mt-[20%]">
           <Heading />
         </div>
       </main>
       <section className="">
-        <div className="h-[75vh] mt-20 xs:px-[5%]">
+        <div className="h-[80vh] ss:mt-20 max-ss:mt-10 xs:px-[5%]">
           <Info />
           {/* Card Component */}
 
-          <div className="h-3/4 pt-20 overflow-y-scroll px-[5%]">
+          <div className="h-3/4 pt-20 overflow-y-scroll px-[5%] no-scrollbar">
             <CardBox items={4} style="flex gap-10 " />
           </div>
           <div className="text-center m-2">
@@ -61,7 +61,7 @@ function landing() {
         </div>
       </section>
 
-      <section className="h-[55vh] mt-20 xs:px-[5%] py-1">
+      <section className="h-70vh] mt-20 xs:px-[5%] py-1">
         {/* Booking */}
         <div className="my-20">
           <Booking />
