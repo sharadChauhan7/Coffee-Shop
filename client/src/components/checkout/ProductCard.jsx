@@ -2,8 +2,10 @@ import React from 'react'
 import { IoBagOutline } from "react-icons/io5";
 import {usePopup} from '../../config/popup'
 
-function ProductCard({handelCheckout ,total}) {
+function ProductCard({handelCheckout ,total,saveData}) {
   let {popup,handelPopcart}=usePopup();
+
+
   return (
       <>
       {/* Make a product card it should contain an image  then a heading name all products and a button displaying total amount */}
@@ -13,9 +15,7 @@ function ProductCard({handelCheckout ,total}) {
         </div>
         <div className='flex justify-start items-start flex-col'>
           <h1 className='text-3xl font-medium border-b-2 w-full mt-3'>View Cart</h1>
-          <button className='bg-black text-2xl text-white px-5 py-2 mt-4 w-full rounded-3xl h-14' onClick={handelCheckout}>Pay &#8377;{total}</button>
-          
-
+          <button className='bg-black text-2xl text-white px-5 py-2 mt-4 w-full rounded-3xl h-14' onClick={()=>{handelCheckout();saveData();}}>Pay &#8377;{total}</button>
         </div>
       </div>
       </>

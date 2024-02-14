@@ -31,14 +31,14 @@ function logout({ bg = "bg-black", text = "text-white",home=false, quit }) {
   }
   return (
     <div
-      className={`absolute ${view} w-36 h-20 ${bg} rounded-3xl flex flex-col gap-2  items-center justify-center`}
+      className={`absolute ${view} w-36 h-20 ${bg} rounded-3xl flex flex-col gap-2  items-center justify-center max-cd:right-[16%] max-xs:right-[5%]`}
     >
       <button
         onClick={() => {
           logout();
           quit();
         }}
-        className={`text-xl font-semibold ${text}`}
+        className={`text-xl font-semibold  ${text}`}
       >
         Logout
       </button>

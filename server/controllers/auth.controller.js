@@ -24,4 +24,9 @@ module.exports.Login = async (req, res, next) => {
   }
 
 }
+module.exports.UpdateUser=async(req,res,next)=>{
+  let {email,address,phoneNumber}=req.body;
+  let user = await User.findOneAndUpdate({email:email},{address:address,phone:phoneNumber},{new:true});
+  res.send("Working");
+}
 

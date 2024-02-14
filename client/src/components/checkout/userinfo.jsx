@@ -1,17 +1,26 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import ProductCard from './ProductCard';
-
+import axios from 'axios';
 function userinfo({handler,total}) {
     // let user = JSON.parse(localStorage.getItem('user')).providerData[0];
     useEffect(() => {
         document.title = 'Checkout'
+
     }, [])
 
     let [user, setUser] = useState(JSON.parse(localStorage.getItem('user')).providerData[0]);
 
     function handlechange(e) {
         setUser({ ...user, [e.target.name]: e.target.value });
+    }
+    function saveData(){
+        let current=JSON.parse(localStorage.getItem('user'));
+        current.providerData[0].address=user.address;
+        current.providerData[0].phoneNumber=user.phoneNumber;
+        localStorage.setItem('user',JSON.stringify(current));
+        
+        let res=axios.post('http://localhost:3000/auth/update',current.providerData[0]);
     }
 
     return (
@@ -24,21 +33,13 @@ function userinfo({handler,total}) {
                         <h2 className='text-3xl font-medium font-sans my-3'>Billing Address</h2>
                         <form action="">
                             <div className='flex flex-col gap-5'>
-                                <div className='flex justify-between gap-5 items-center'>
-                                    <label htmlFor="name" className='text-2xl mr-20'> Name</label>
-                                    <input type="text" placeholder="Full Name" className='border-b-2 w-3/4 focus:outline-none' id="name" value={user.displayName}onChange={handlechange} />
-                                </div>
                                 <div className='flex justify-between gap-5 items-center'> 
                                     <label htmlFor="phone" className='text-2xl mr-20'> Phone</label>
-                                    <input type="text" placeholder="Phone" className='border-b-2 w-3/4 focus:outline-none' id="phone" value={user.phoneNumber}onChange={handlechange} />
-                                </div>
-                                <div className='flex justify-between gap-5 items-center'>
-                                    <label htmlFor="email" className='text-2xl mr-20'> Email</label>
-                                    <input type="email" placeholder="Email" className='border-b-2 w-3/4 focus:outline-none' id="email" value={user.email} onChange={handlechange} />
+                                    <input type="text" placeholder="Phone" className='border-b-2 w-3/4 focus:outline-none' name='phoneNumber' id="phone" value={user.phoneNumber} onChange={handlechange} />
                                 </div>
                                 <div className='flex justify-between gap-5 items-center'>
                                     <label htmlFor="address" className='text-2xl mr-20'> Address</label>
-                                    <input type="text" placeholder="Address" className='border-b-2 w-3/4 focus:outline-none' id="address" value={user.address} onChange={handlechange} />
+                                    <input type="text" placeholder="Address" className='border-b-2 w-3/4 focus:outline-none' name='address' id="address" value={user.address} onChange={handlechange} />
                                 </div>
 
                             </div>
@@ -46,7 +47,7 @@ function userinfo({handler,total}) {
                     </div>
                     {/* Cart card */}
                     <div className='w-2/5  h-[50vh] flex justify-center items-center '>
-                        <ProductCard handelCheckout={handler} total={total} />
+                        <ProductCard handelCheckout={handler} total={total} saveData={saveData}  />
 
                     </div>
                 </div>

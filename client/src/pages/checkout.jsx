@@ -63,7 +63,7 @@ function checkout() {
       <div className="body px-[5%]">
         <Routes Rout={link} btn="Checkout" />
         <UserInfo handler={handelCheckout} total={total} />
-
+        
       </div>
       <Footer />
     </div>

@@ -25,7 +25,7 @@ function Navbar() {
 
   // Search
   return (
-    <div className={`h-20 bg-[#0D0D0D] fixed top-0 w-full z-20 ${navbarOpen?'h-[48vh]':'h-20'}`}>
+    <div className={`h-20 bg-[#0D0D0D] fixed top-0 w-full z-20 ${navbarOpen?'h-[38vh]':'h-20'}`}>
       <div className="flex items-center justify-between w-4/5 mx-auto h-full max-cd:items-center max-cd:justify-evenly max-cd:flex-col">
         <div className={`max-cd:flex max-cd:justify-between max-cd:w-full ${navbarOpen?'max-cd:-mt-8':'max-cd:mt-4'}`}>
           <div>
@@ -63,15 +63,7 @@ function Navbar() {
           />
         </div>
         <div className={`flex items-center gap-4 text-3xl max-cd:flex-col max-cd:opacity-60  max-cd:w-3/5 max-ss:w-4/5 ${navbarOpen?'':'max-cd:hidden'}`}>
-          {/* Write Like,Bell,Bag */}
-          <h1 className="text-white font-medium max-cd:flex max-cd:justify-between max-cd:w-full">
-            <span className="cd:hidden text-2xl">Wishlist</span>
-            <CiHeart />
-          </h1>
-          <h1 className="text-white font-medium max-cd:flex max-cd:justify-between max-cd:w-full">
-          <span className="cd:hidden text-2xl">Notification</span>
-            <GoBell />
-          </h1>
+          
           <h1 className="text-white font-medium max-cd:flex max-cd:justify-between max-cd:w-full" onClick={handelPopcart}>
           <span className="cd:hidden text-2xl">Cart</span>
             <IoBagOutline />

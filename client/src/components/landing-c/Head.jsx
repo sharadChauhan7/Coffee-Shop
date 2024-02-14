@@ -57,7 +57,7 @@ function Tabsearch() {
     <div>
 
         {popup ?!isLoggedIn? (
-            <div className="absolute top-20 right-[29%] w-36 h-32 bg-white rounded-3xl flex flex-col gap-2">
+            <div className="absolute top-20 right-[29%] w-36 h-32 bg-white rounded-3xl flex flex-col gap-2  max-cd:right-[16%] max-xs:right-[5%]">
               <button onClick={() => {handellogin();setPopup((n) => !n);}} className="mt-4 text-xl font-semibold text-gray-600">Login</button>
               <button onClick={() => {handelsignup();setPopup((n) => !n);}}className="mt-4 text-xl font-semibold text-gray-600">Signup</button>
             </div>

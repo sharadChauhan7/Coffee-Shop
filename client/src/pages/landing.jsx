@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Info, Tab, Tabsearch } from "../components/landing-c/Head";
 import { Heading } from "../components/landing-c/Head";
 import Bg from "../assets/Bg.png";
@@ -12,6 +12,8 @@ import Footer from "../components/main/Footer";
 import { Link } from "react-router-dom";
 import { usePopup } from "../config/popup";
 import Newsletter from '../components/landing-c/newsletter'
+import { RxHamburgerMenu } from "react-icons/rx";
+
 
 function landing() {
   const btns = [
@@ -21,7 +23,12 @@ function landing() {
     ["Contact Us", "#contactus"],
   ];
 
+  let[navbarOpen,setNavbarOpen]=useState(false);
+  function handelNavbar(){
+    setNavbarOpen(!navbarOpen);
+  }
 
+console.log(navbarOpen);
   const { popup, handelPopcart,login,handellogin,signup,handelsignup } = usePopup();
   return (
     <>
@@ -36,11 +43,16 @@ function landing() {
         className="w-full cd:h-[85vh] ss:h-[75vh] h-[65vh] position absolute -z-10 mb-2 object-cover"
       />
       <main className="px-[5%] cd:h-[85vh] ss:h-[75vh] h-[65vh] bg-cover " id="home">
-        <div className=" flex  justify-center gap-10">
-          <div className="bg-white mt-5 h-12 rounded-3xl flex items-center justify-center text-sm px-5">
+        <div className={`flex  justify-center gap-10 max-ss:justify-between  ${navbarOpen?'max-ss:items-start':'max-ss:items-end'}`}>
+          <div className={`text-4xl text-white mb-1 ss:hidden ${navbarOpen?'mt-7':''}`} onClick={handelNavbar}>
+            <RxHamburgerMenu />
+          </div>
+          <div className={`bg-white mt-5 h-12 rounded-3xl flex items-center justify-center text-sm px-5 ${navbarOpen?'max-ss:h-[20vh] absolute top-16 w-full text-xl left-0 flex-col':'max-ss:hidden'}`}>
             <Tab btns={btns} />
           </div>
-          <Tabsearch />
+          <div >
+             <Tabsearch />
+          </div>
         </div>
         <div className="mt-[20%]">
           <Heading />
