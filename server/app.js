@@ -1,12 +1,12 @@
 const express = require('express');
 const app=express();
 const path =require('path');
-const port =3000;
 const session = require('express-session');
 const cors=require('cors');
 const cookieParser = require('cookie-parser');
 require('dotenv').config({path:'./.env'});
 
+const port =process.env.PORT;
 
 const User=require('./model/user');
 
@@ -19,7 +19,13 @@ const instance = require('./config/razorpay.js');
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+  {
+    origin:["http://localhost:5173/"],
+    methods:["POST","GET"],
+    credentials:true,
+  }
+));
 
 app.use(cookieParser("secretcode"))
 
