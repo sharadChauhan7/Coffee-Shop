@@ -27,6 +27,7 @@ function checkout() {
   }
 
   async function handelCheckout() {
+    
     let order = await axios.post('http://localhost:3000/payment/checkout', { amount: (total * 100) });
     order = order.data;
     let key_id = await axios.get('http://localhost:3000/payment/key');

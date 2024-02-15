@@ -12,5 +12,10 @@ const ValidateLogin = Joi.object({
     email: Joi.string().required(),
     password: Joi.string().min(6).max(30).required(),
 });
+
+const ValidateCheckout= Joi.object({
+    phoneNumber:Joi.string().min(10).max(11).required(),
+    address:Joi.string().max(100).required(),
+})
 // Export the schema
-export  {ValidateSignup, ValidateLogin};
+export  {ValidateSignup, ValidateLogin,ValidateCheckout};

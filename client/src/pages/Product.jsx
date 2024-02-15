@@ -137,7 +137,7 @@ function Product() {
           </div>
           <div className="border-b-2 pb-8">
             {/* Size service and add to cart option */}
-            <div className="flex gap-12 flex-col">
+            <div className="flex gap-12 flex-col w-full">
               <Size handelSize={handleItemInfo} size={itemInfo.size} />
               <Service handelService={handleItemInfo} service={itemInfo.service} />
               <Quantity handleQuantity={handleItemInfo} quantity={itemInfo.quantity} />

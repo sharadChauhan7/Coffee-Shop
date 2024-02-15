@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'booking': "url('./src/assets/Booking.svg')",
+        'booking': "url('./src/assets/Booking.png')",
         'wood':"url('./src/assets/Wood.svg')"
       },
       borderColor:{

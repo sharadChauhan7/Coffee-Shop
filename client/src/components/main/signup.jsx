@@ -53,7 +53,7 @@ function signup({quit}) {
   return (
 
     <div className="overlay">
-    <div className="modal w-1/2 absolute top-[15%] left-1/4">
+    <div className="modal md:w-1/2 absolute top-[15%] md:left-1/4  xs:left-[10%] xs:right-[10%] max-xs:w-full">
       <div className="head">
         <h2 className="text-5xl font-medium">SignUp</h2>
         <button onClick={quit} className="text-4xl relative -top-4" ><IoClose /></button>

@@ -9,7 +9,7 @@ function ProductCard({handelCheckout ,total,saveData}) {
   return (
       <>
       {/* Make a product card it should contain an image  then a heading name all products and a button displaying total amount */}
-      <div className='h-[90%] w-3/5 rounded-3xl p-3 shadow-2xl border-2'>
+      <div className='h-[90%] max-h-96 w-[60%] min-w-72 rounded-3xl p-3 shadow-2xl border-2 cd:-mt-40'>
         <div className='w-full h-4/6 text-black' onClick={handelPopcart}>
           <IoBagOutline className='text-9xl text-gray-700 w-full h-full bg-gray-200 rounded-3xl'/>
         </div>
