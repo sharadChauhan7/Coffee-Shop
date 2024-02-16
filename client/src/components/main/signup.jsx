@@ -40,7 +40,7 @@ function signup({quit}) {
         localStorage.setItem('token',userData.user.accessToken);
         localStorage.setItem('user',JSON.stringify(userData.user));
         setIsLoggedIn(true);
-        let res=await axios.post('https://coffee-shop-5cxn.onrender.com/auth/signup',user);
+        let res=await axios.post('http://localhost:3000/auth/signup',user);
         console.log(res.result);
 
         quit();

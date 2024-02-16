@@ -43,6 +43,9 @@ const sessionOption={
 
 
 app.use(session(sessionOption));
+app.get('/',(req,res)=>{
+  res.send("Working");
+})
 
 app.use('/auth',auth);
 app.use('/cart',cart);
