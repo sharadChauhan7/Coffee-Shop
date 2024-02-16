@@ -44,7 +44,7 @@ const sessionOption={
 
 app.use(session(sessionOption));
 app.get('/',(req,res)=>{
-  res.send("Working");
+  res.json("Working");
 })
 
 app.use('/auth',auth);
