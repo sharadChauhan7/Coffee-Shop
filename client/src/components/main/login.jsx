@@ -68,7 +68,6 @@ function login({ quit }) {
                 <input type="text" name="email" id="email" placeholder="Email" className="focus:outline-none"onChange={handlechange} />
                 <input type="password" name="password" placeholder="Password" className="focus:outline-none" onChange={handlechange}/>
                 <button className="mt-8 text-3xl text-white bg-black w-full h-14 hover:bg-gray-900" onClick={handleSubmit} >Login</button>
-                <a href="#" className="text-blue-500 text-center text-xl">Don't have an account SignUp</a>
           </form> 
         </div>
       </div>
