@@ -27,8 +27,6 @@ function landing() {
   function handelNavbar(){
     setNavbarOpen(!navbarOpen);
   }
-
-console.log(navbarOpen);
   const { popup, handelPopcart,login,handellogin,signup,handelsignup } = usePopup();
   return (
     <>

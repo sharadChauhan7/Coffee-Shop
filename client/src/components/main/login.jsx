@@ -11,10 +11,12 @@ import { toast } from "react-toastify";
 
 function login({ quit }) {
 
+  axios.defaults.withCredentials=true;
+
   async function settingCart(email){
     console.log(email);
-    let result = await axios.get(`http://localhost:3000/cart/${email}`);
-    // console.log(result.data);
+    let result = await axios.get(`https://coffee-shop-5cxn.onrender.com/cart/${email}`);
+    console.log(result.data);
     localStorage.setItem("cart", JSON.stringify(result.data));
 
   }
@@ -36,7 +38,7 @@ function login({ quit }) {
       let userData=await signInWithEmailAndPassword(auth,user.email,user.password);
       // Set a token in local storage
 
-      let res=await axios.get(`http://localhost:3000/auth/login/${userData.user.email}`);
+      let res=await axios.get(`https://coffee-shop-5cxn.onrender.com/auth/login/${userData.user.email}`);
       userData.user.providerData[0].phoneNumber=res.data[0].phone;
       userData.user.providerData[0].displayName=res.data[0].username;
       userData.user.providerData[0].address=res.data[0].address;

@@ -8,7 +8,7 @@ import { CiUser } from "react-icons/ci";
 import { useState,useEffect } from "react";
 import {usePopup} from "../../config/popup"
 import {useUser} from "../../config/user"
-import axios from "axios";
+import {Link} from 'react-router-dom'
 
 function Heading() {
   return (
@@ -24,9 +24,11 @@ function Tab({ btns }) {
     <>
       {btns.map((data, index) => {
         return (
-          <a className="mx-4" href={`${data[1]}`} key={index}>
+          <Link to={data[1]}>
+          <span className="mx-4" key={index}>
             {data[0]}
-          </a>
+          </span>
+          </Link>
         );
       })}
     </>
@@ -68,11 +70,14 @@ function Tabsearch() {
 }
 
 function Info() {
+  
   return (
+    <>
     <div
-      className="w-[100%] rounded-3xl sm:h-48 border overflow-hidden bg-wood bg-cover md:px-28 xs:px-6 py-5 flex max-sm:flex-col gap-2 max-sm:items-center"
+      className={`w-[100%] rounded-3xl bg-[#000000] sm:h-48 border overflow-hidden md:px-28 xs:px-6 py-5 flex max-sm:flex-col gap-2 max-sm:items-center bg-[linear-gradient(315deg,_#000000_0%,_#414141_74%)] `}
       id="aboutus"
-    >
+      >
+      {/* <img src={Bg} alt="" className="w-full h-full  object-cover -z-10" /> */}
       <div className="flex sm:w-[20%] ">
         <img src={Wood} alt="" />
       </div>
@@ -84,6 +89,7 @@ function Info() {
         taste and bliss.
       </div>
     </div>
+      </>
   );
 }
 

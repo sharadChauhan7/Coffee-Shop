@@ -26,7 +26,8 @@ function signup({quit}) {
         console.log(user);
         let {error}=ValidateSignup.validate(user);
         if(error){
-          // console.log(error.details[0].message);
+          console.log(error.details[0].message);
+          
           toast.error(error.details[0].message,{position:'top-center'});
           return;
         }
@@ -40,7 +41,7 @@ function signup({quit}) {
         localStorage.setItem('token',userData.user.accessToken);
         localStorage.setItem('user',JSON.stringify(userData.user));
         setIsLoggedIn(true);
-        let res=await axios.post('http://localhost:3000/auth/signup',user);
+        let res=await axios.post('https://coffee-shop-5cxn.onrender.com/auth/signup',user);
         console.log(res.result);
 
         quit();

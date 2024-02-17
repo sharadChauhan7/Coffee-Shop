@@ -1,8 +1,10 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
 function Button({text,link,style=""}) {
   return (
-    <a className={`border max-w-32 min-w-24 p-3 text-center rounded-3xl ${style} bg-white`} href={`${link}`}>{text}</a>
+    <Link to={link}>
+      <span className={`border max-w-32 min-w-24 p-3 text-center rounded-3xl ${style} bg-white`} >{text}</span>
+    </Link>
   )
 }
 
