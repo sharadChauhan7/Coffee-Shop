@@ -9,6 +9,7 @@ import Routes from "../components/main/routes";
 import Filter from '../components/store-c/filter'
 import { useState,useEffect } from "react";
 import {filData,getData} from "../util/filter";
+import Button from "../components/landing-c/Button";
 
 import Footer from "../components/main/Footer";
 let link = [["Home" , "/"]];
@@ -39,6 +40,11 @@ function store() {
     }
       setFilters({ ...filters, [e.target.name]: e.target.value });
   }
+  let [filterStyle,setFilterStyle]=useState(false);
+  function handelFilterStyle(){
+    setFilterStyle(!filterStyle);
+  }
+
   return (
     <div>
       {/* Login Sign Up */}
@@ -49,9 +55,12 @@ function store() {
       <Navbar />
       <div className="px-[5%] text-3xl my-10 mt-32 ">
         <Routes Rout={link} btn="Store" />
+        <div className="border-2 bg-black text-white shadow-xl p-2 max-w-32 text-center" onClick={handelFilterStyle}>
+          Filter
+        </div>
       </div>
       <div className="flex px-[5%] w-[100vw] justify-between">
-        <div className="w-[20%] max-md:hidden ">
+        <div className={`w-[20%] ${filterStyle?"absolute w-[90%] bg-white shadow-2xl":" max-md:hidden"}`}>
           {/* Filterrrr */}
          <Filter filters={filters} handleChange={handleChange}/>
           </div>
