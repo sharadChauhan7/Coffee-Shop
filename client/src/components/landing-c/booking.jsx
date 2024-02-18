@@ -7,7 +7,7 @@ function booking() {
       <div className='md:w-1/3 max-md:w-3/6 max-sm:w-4/6 max-ss:w-5/6  h-full flex flex-col items-start justify-center gap-4'>
         <h1 className='text-2xl font-bold text-white'>Request an order for your private party or event?</h1>
         <p className='text-sm text-white font-light'>We are open to ordering party events such as weddings, celebrations, or other events</p>
-        <Button text='Book Now' link='booking' style='xs:text-lg px-5'/>
+        <Button text='Book Now' link='store' style='xs:text-lg px-5'/>
       </div>
 
     </div>
