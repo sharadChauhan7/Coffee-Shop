@@ -18,9 +18,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 function landing() {
   const btns = [
     ["Home", "#home"],
-    ["About Us", "#aboutus"],
     ["Store", "store"],
-    ["Contact Us", "#contactus"],
   ];
 
   let[navbarOpen,setNavbarOpen]=useState(false);
