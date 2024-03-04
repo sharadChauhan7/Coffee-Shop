@@ -21,7 +21,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cors(
   {
-    origin:["https://damium-coffee.netlify.app"],
+    origin:["http://localhost:5173"],
     methods:["POST","GET"],
     credentials:true,
   }

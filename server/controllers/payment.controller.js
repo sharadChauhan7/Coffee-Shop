@@ -28,9 +28,8 @@ module.exports.verification = async (req, res) => {
 
 
       if(expectedSignature===razorpay_signature){
-
-
-        res.redirect("https://damium-coffee.netlify.app/paymentsuccess");
+        
+        res.redirect("http://localhost:5173/paymentsuccess");
       }
       else{
         res.status(400).send("Error");
