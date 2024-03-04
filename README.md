@@ -64,7 +64,7 @@ To get started with this project, follow these steps:
   
   MONGO_URL=<your_mongoDB_URL>
   
-  PORT=5173
+  PORT=3000
   ```
 
 ## 4. Start Backend Server
@@ -98,6 +98,6 @@ This project is open-source and does not have a specific license. Feel free to u
 For any inquiries or support related to Damium Coffee Shop, you can reach out to me on:
 
 - Instagram:[sharad.s.chauhan](https://www.instagram.com/sharad.s.chauhan)
-- Linkdin:[sharad.s.chauhan](https://www.linkedin.com/in/sharad-chauhan-24a62126a)
+- Linkdin:[Sharad Singh Chauhan](https://www.linkedin.com/in/sharad-chauhan-24a62126a)
 - 
 Your feedback and suggestions are greatly appreciated!
