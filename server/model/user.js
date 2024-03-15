@@ -8,7 +8,7 @@ main()
 .then((res)=>{console.log("Connection is up")})
 .catch(err => console.log(err));
 async function main() {
-  await mongoose.connect(process.env.MONGO_URL);
+  await mongoose.connect(process.env.MONGO_LOCAL);
 }
 
 // User Database Schema
