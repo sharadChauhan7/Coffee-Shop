@@ -10,6 +10,14 @@ const port =process.env.PORT;
 
 const User=require('./model/user');
 
+app.use(cors(
+  {
+    origin:["https://mycoffeebeans.vercel.app","http://localhost:5173"],
+    methods:["POST","GET"],
+    credentials:true,
+  }
+));
+
 const auth=require('./routs/auth.js');
 const cart=require('./routs/cart.js');
 const payment=require('./routs/paymentroute.js');
@@ -19,15 +27,8 @@ const instance = require('./config/razorpay.js');
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-app.use(cors(
-  {
-    origin:["https://mycoffeebeans.vercel.app"],
-    methods:["POST","GET"],
-    credentials:true,
-  }
-));
 
-app.use(cookieParser("secretcode"))
+app.use(cookieParser("secretcode"));
 
 const sessionOption={
   secret: 'keyboard cat',
