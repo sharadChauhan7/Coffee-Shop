@@ -12,7 +12,7 @@ const User=require('./model/user');
 
 app.use(cors(
   {
-    origin: true,
+    origin: "*",
     methods:["POST","GET"],
     credentials:true,
   }
