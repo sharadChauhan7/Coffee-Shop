@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 function card({ data }) {
-  console.log(data.image_url);
   return (
     <div className="w-60 h-72  overflow-hidden shadow-md rounded-3xl  max-xs:w-72 max-xs:h-80 border mx-1 flex-none">
         <Link
