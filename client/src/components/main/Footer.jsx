@@ -39,7 +39,7 @@ function Footer() {
         <div className="flex gap-4">
           <a href="https://www.instagram.com/sharad.s.chauhan"><IoLogoInstagram/> </a>
           <a href="https://linkedin.com/in/sharad-chauhan-24a62126a"><FaLinkedin/> </a>
-          <a href="https://github.com/Shinan007"><FaGithub/> </a>
+          <a href="https://github.com/sharadchauhan7"><FaGithub/> </a>
           </div>
       </div>
     </div>
