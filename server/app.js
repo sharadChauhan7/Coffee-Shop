@@ -21,7 +21,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cors(
   {
-    origin:["http://localhost:5173"],
+    origin:["https://mycoffeebeans.vercel.app"],
     methods:["POST","GET"],
     credentials:true,
   }
