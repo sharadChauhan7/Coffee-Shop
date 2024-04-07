@@ -29,7 +29,7 @@ function userinfo({handler,total}) {
             current.providerData[0].address=user.address;
             current.providerData[0].phoneNumber=user.phoneNumber;
             localStorage.setItem('user',JSON.stringify(current));
-            let res=axios.post('https://coffee-shop-5cxn.onrender.com/auth/update',current.providerData[0]);
+            let res=axios.post('https://coffee-shop-api-tau.vercel.app/auth/update',current.providerData[0]);
         }
     }
 

@@ -22,7 +22,7 @@ function logout({ bg = "bg-black", text = "text-white",home=false, quit }) {
     let cartData = JSON.parse(localStorage.getItem("cart"));
     localStorage.removeItem("cart");
     
-    await axios.post("http://localhost:3000/cart",{cartData,userData});
+    await axios.post("https://coffee-shop-api-tau.vercel.app/cart",{cartData,userData});
    }
    catch(e){
     console.log(e);

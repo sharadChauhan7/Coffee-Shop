@@ -11,7 +11,7 @@ function paymentsuccess() {
       let userData=JSON.parse(localStorage.getItem("user"));
       userData=userData.email;
       console.log(userData);
-      let result=await axios.post("http://localhost:3000/cart/emptycart",{userData});
+      let result=await axios.post("https://coffee-shop-api-tau.vercel.app/cart/emptycart",{userData});
       if(result.data=="Cart is Empty Now"){
         
         localStorage.removeItem('cart');
