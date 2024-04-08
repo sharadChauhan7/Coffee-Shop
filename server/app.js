@@ -12,7 +12,7 @@ const User=require('./model/user');
 
 app.use(cors(
   {
-    origin: "https://mycoffeebeans.vercel.app",
+    origin: "*",
     methods:["POST","GET"],
     credentials:true,
   }
