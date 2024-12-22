@@ -12,7 +12,7 @@ const User=require('./model/user');
 
 app.use(cors(
   {
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173","https://browncoffeeshop.netlify.app"],
     methods:["POST","GET"],
     credentials:true,
   }
