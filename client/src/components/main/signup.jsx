@@ -10,10 +10,12 @@ import {useNavigate} from 'react-router-dom';
 import {useUser} from '../../config/user'
 import {ValidateSignup}  from '../../util/validation.js'
 import { toast } from 'react-toastify';
+import DotLoading from './DotLoading.jsx';
 
 function signup({quit}) {
     let [user,setUser]=useState({});
     let {setIsLoggedIn}=useUser();
+    const [loading,setLoading]=useState(false);
 
     function handlechange(e){
       setUser({...user,[e.target.name]:e.target.value})
@@ -23,6 +25,7 @@ function signup({quit}) {
     async function handleSubmit(e){
       e.preventDefault();
       try{
+        setLoading(true);
         console.log(user);
         let {error}=ValidateSignup.validate(user);
         if(error){
@@ -41,13 +44,16 @@ function signup({quit}) {
         localStorage.setItem('token',userData.user.accessToken);
         localStorage.setItem('user',JSON.stringify(userData.user));
         setIsLoggedIn(true);
-        let res=await axios.post('https://coffee-shop-5cxn.onrender.com/auth/signup',user);
-        console.log(res.result);
+        console.log(import.meta.env.VITE_SERVER_URL);
+        let res=await axios.post(import.meta.env.VITE_SERVER_URL+'auth/signup',user);
+        console.log(res);
 
         quit();
+        setLoading(false);
         toast.success('User Created',{position:'top-right'});
       }
       catch(err){
+        setLoading(false);
         toast.error(err.message,{position:'top-center'});
       }
     }
@@ -65,7 +71,7 @@ function signup({quit}) {
               <input type="text" name='phone' placeholder='Phone no.'  className="focus:outline-none" onChange={handlechange}/>
               <input type="email" name='email'placeholder='Email' className="focus:outline-none col-span-2" onChange={handlechange} />
               <input type="password" name="password" placeholder="Password" className="focus:outline-none col-span-2"onChange={handlechange}/>
-              <button className="mt-8 text-3xl text-white bg-black w-full h-14 hover:bg-gray-900 col-span-2" onClick={handleSubmit}>SignUp</button>
+              <button className="mt-8 text-3xl text-white bg-black w-full h-14 hover:bg-gray-900 col-span-2" onClick={handleSubmit}>{loading?<DotLoading/>:"Sign Up"}</button>
         </form> 
       </div>
     </div>

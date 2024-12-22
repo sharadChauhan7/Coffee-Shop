@@ -14,7 +14,7 @@ const ValidateLogin = Joi.object({
 });
 
 const ValidateCheckout= Joi.object({
-    phoneNumber:Joi.string().min(10).max(11).required(),
+    phoneNumber:Joi.string().required(),
     address:Joi.string().max(100).required(),
 })
 // Export the schema

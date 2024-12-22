@@ -8,14 +8,16 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import {useUser} from '../../config/user'
 import {ValidateLogin} from '../../util/validation.js'
 import { toast } from "react-toastify";
+import DotLoading from "./DotLoading.jsx";
 
 function login({ quit }) {
+  const[loading,setLoading]=useState(false);
 
   axios.defaults.withCredentials=true;
 
   async function settingCart(email){
     console.log(email);
-    let result = await axios.get(`https://coffee-shop-api-tau.vercel.app/cart/${email}`);
+    let result = await axios.get(import.meta.env.VITE_SERVER_URL+`cart/${email}`);
     console.log(result.data);
     localStorage.setItem("cart", JSON.stringify(result.data));
 
@@ -29,6 +31,7 @@ function login({ quit }) {
   axios.defaults.withCredentials=true;
   async function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true);
     try{
       let {error}=ValidateLogin.validate(user);
       if(error){
@@ -38,7 +41,7 @@ function login({ quit }) {
       let userData=await signInWithEmailAndPassword(auth,user.email,user.password);
       // Set a token in local storage
 
-      let res=await axios.get(`https://coffee-shop-5cxn.onrender.com/auth/login/${userData.user.email}`);
+      let res=await axios.get(import.meta.env.VITE_SERVER_URL+`auth/login/${userData.user.email}`);
       userData.user.providerData[0].phoneNumber=res.data[0].phone;
       userData.user.providerData[0].displayName=res.data[0].username;
       userData.user.providerData[0].address=res.data[0].address;
@@ -48,9 +51,11 @@ function login({ quit }) {
       setIsLoggedIn(true);
       settingCart(user.email);
       quit();
+      setLoading(false);
       toast.success('User Logged In',{position:'top-right'});
     }
     catch(err){
+      setLoading(false);
       toast.error(err.message,{position:'top-right'});
       console.dir(err);
     }
@@ -67,7 +72,7 @@ function login({ quit }) {
           <form action="#" className="flex flex-col items-stretch gap-8">
                 <input type="text" name="email" id="email" placeholder="Email" className="focus:outline-none"onChange={handlechange} />
                 <input type="password" name="password" placeholder="Password" className="focus:outline-none" onChange={handlechange}/>
-                <button className="mt-8 text-3xl text-white bg-black w-full h-14 hover:bg-gray-900" onClick={handleSubmit} >Login</button>
+                <button className="mt-8 text-3xl text-white bg-black w-full h-14 hover:bg-gray-900" onClick={handleSubmit} >{loading?<DotLoading/>:"Login"}</button>
           </form> 
         </div>
       </div>

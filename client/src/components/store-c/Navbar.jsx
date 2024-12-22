@@ -9,6 +9,7 @@ import { CiUser } from "react-icons/ci";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Logout from "../main/logout"
 import { useEffect } from "react";
+import CartIcon from "./CartIcon";
 
 // State
 import { useState } from "react";
@@ -65,10 +66,12 @@ function Navbar() {
         <div className={`flex items-center gap-4 text-3xl max-cd:flex-col max-cd:opacity-60  max-cd:w-3/5 max-ss:w-4/5 ${navbarOpen?'':'max-cd:hidden'}`}>
           
           <h1 className="text-white font-medium max-cd:flex max-cd:justify-between max-cd:w-full" onClick={handelPopcart}>
-          <span className="cd:hidden text-2xl">Cart</span>
-            <IoBagOutline />
+          {/* <span className="cd:hidden text-2xl">Cart</span> */}
+            {/* <IoBagOutline />
             {num > 0 ? (<span className="relative text-base rounded-full h-6 w-6 text-center right-4 bg-white text-black bottom-2 border">{num}
-            </span>):null}
+            </span>):null} */}
+            <CartIcon num={num} />
+
           </h1>
 
           <h1 className="text-white font-medium max-cd:hidden">|</h1>

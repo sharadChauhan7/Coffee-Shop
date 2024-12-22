@@ -56,7 +56,7 @@ function cart({ quit,prevCart }) {
             </button>
           </div>
           {/* Cart Body */}
-          <div className="overflow-y-scroll h-92 no-scrollbar">
+          <div className="overflow-y-scroll h-full  no-scrollbar">
             {cartItems && cartItems.length ? (
               cartItems.map((item, index) => {
                 return (
@@ -86,8 +86,8 @@ function cart({ quit,prevCart }) {
                 );
               })
             ) : (
-              <div className="flex justify-center h-92">
-                <h1 className="text-5xl max-ss:text-4xl max-cd:text-3xl">Cart is Empty</h1>
+              <div className="flex justify-center  h-full items-center">
+                <h1 className="text-5xl max-ss:text-4xl  max-cd:text-3xl">Cart is Empty</h1>
               </div>
             )}
           </div>

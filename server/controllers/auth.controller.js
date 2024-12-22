@@ -4,6 +4,7 @@ const passport = require("passport");
 module.exports.Signup = async (req, res, next) => {
   try {
     let newUser = new User(req.body);
+    
     await newUser.save();
     res
       .status(200).send({result:true,message:"User Created"});
@@ -12,6 +13,7 @@ module.exports.Signup = async (req, res, next) => {
     res.status(400).send("Error");
   }
 };
+
 module.exports.Login = async (req, res, next) => {
   try {
     let {id}=req.params;
@@ -24,6 +26,7 @@ module.exports.Login = async (req, res, next) => {
   }
 
 }
+
 module.exports.UpdateUser=async(req,res,next)=>{
   let {email,address,phoneNumber}=req.body;
   let user = await User.findOneAndUpdate({email:email},{address:address,phone:phoneNumber},{new:true});

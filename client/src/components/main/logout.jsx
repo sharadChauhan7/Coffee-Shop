@@ -22,7 +22,7 @@ function logout({ bg = "bg-black", text = "text-white",home=false, quit }) {
     let cartData = JSON.parse(localStorage.getItem("cart"));
     localStorage.removeItem("cart");
     
-    await axios.post("https://coffee-shop-5cxn.onrender.com/cart",{cartData,userData});
+    await axios.post(import.meta.env.VITE_SERVER_URL+"cart",{cartData,userData});
    }
    catch(e){
     console.log(e);

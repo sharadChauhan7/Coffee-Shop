@@ -4,7 +4,9 @@ function Filter({filters, handleChange }) {
 
 
   const grind = ["Whole Bean", "Cafetiere", "Filter", "Espresso", "French press", "Pour Over"];
-  const Region = ["Central America", "Africa", "South America", "Asia Pacific", "Middle East",]
+  const Region = ["Central America", "Africa", "South America", "Asia Pacific", "Middle East",];
+
+  
   return (
     <div className='sticky w-full h-[75vh] border-2 top-40 rounded-3xl p-4 overflow-y-scroll no-scrollbar'>
       <div className=''>

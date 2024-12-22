@@ -12,15 +12,15 @@ const User=require('./model/user');
 
 app.use(cors(
   {
-    origin: "*",
+    origin: "http://localhost:5173",
     methods:["POST","GET"],
     credentials:true,
   }
 ));
 
-const auth=require('./routs/auth.js');
-const cart=require('./routs/cart.js');
-const payment=require('./routs/paymentroute.js');
+const auth=require('./routes/auth.js');
+const cart=require('./routes/cart.js');
+const payment=require('./routes/paymentroute.js');
 const instance = require('./config/razorpay.js');
 
 

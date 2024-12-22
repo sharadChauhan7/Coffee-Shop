@@ -19,10 +19,8 @@ const userSchema = new mongoose.Schema({
     require:true,
   },
   phone:{
-    type:Number,
+    type:String,
     require:true,
-    min:1000000000,
-    max:9999999999,
   },
   email:{
     type:String,

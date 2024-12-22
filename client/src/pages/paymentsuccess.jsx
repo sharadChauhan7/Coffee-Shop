@@ -10,8 +10,7 @@ function paymentsuccess() {
     async function EmptyCart(){
       let userData=JSON.parse(localStorage.getItem("user"));
       userData=userData.email;
-      console.log(userData);
-      let result=await axios.post("https://coffee-shop-5cxn.onrender.com/cart/emptycart",{userData});
+      let result=await axios.post(import.meta.env.VITE_SERVER_URL+"cart/emptycart",{userData});
       if(result.data=="Cart is Empty Now"){
         
         localStorage.removeItem('cart');
@@ -35,6 +34,7 @@ function paymentsuccess() {
     </Link>
     <div className='h-screen w-screen'>
       <img src={BG} alt=""  className='w-full h-full'/>
+
     </div>
     </>
   )
