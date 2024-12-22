@@ -2,6 +2,7 @@ const express = require('express');
 const app=express();
 const path =require('path');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const cors=require('cors');
 const cookieParser = require('cookie-parser');
 require('dotenv').config({path:'./.env'});
@@ -30,7 +31,13 @@ app.use(express.json());
 
 app.use(cookieParser("secretcode"));
 
+const store = MongoStore.create({
+  mongoUrl: process.env.MONGO_URL,
+  collectionName: 'sessions',
+  touchAfter: 24 * 3600,
+});
 const sessionOption={
+  store,
   secret: 'keyboard cat',
   resave: true,
   saveUninitialized: true,
@@ -40,7 +47,6 @@ const sessionOption={
     httpOnly:true,
   }
 }
-
 
 
 app.use(session(sessionOption));
