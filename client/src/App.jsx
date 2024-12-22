@@ -14,6 +14,10 @@ import React from "react";
 import Privaterout from "./util/Privaterout";
 import { ToastContainer } from "react-toastify";
 import PaymentSuccess from "./pages/paymentsuccess";
+import Connector from "./components/main/Connector";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -21,10 +25,27 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   let { userId } = useParams();
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    async function checkAuth() {
+      try {
+        setLoading(true);
+        await axios.get(import.meta.env.VITE_SERVER_URL, { withCredentials: true });
+        setLoading(false);
+        toast.success('Connected to server');
+      } catch (error) {
+        
+        console.error(error);
+        toast.error("Error connecting to server");
+      }
+    }
+    checkAuth();
+  },[]);
   return (
     <>
       <ToastContainer />
       <Router>
+        {loading ? <Connector /> :
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/store" element={<Store />} />
@@ -35,6 +56,7 @@ function App() {
             <Route path="test" element={<Test />} />
           </Route>
         </Routes>
+}
       </Router>
     </>
   );
