@@ -15,7 +15,7 @@ function CardBox({ items, style = "", filteredData = null }) {
 
   useEffect(() => {
     async function getData(items) {
-      let data = await fetch(`http://localhost:3000/coffee?limit=${items}`);
+      let data = await fetch(`${import.meta.env.VITE_SERVER_URL}coffee?limit=${items}`);
       let pureData = await data.json();
       setAllitems(pureData);
       setProducts(pureData);
