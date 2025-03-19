@@ -56,10 +56,8 @@ function Product() {
     getCart();
 
     async function getData(key) {
-      console.log(key);
       let data = await fetch(`${import.meta.env.VITE_SERVER_URL}coffee/${key}`);
       let pureData = await data.json();
-      console.log(pureData);
       setItem(pureData);
     }
     getData(userId);

@@ -1,25 +1,24 @@
-import { func } from "joi";
 
 async function filData(filters){
     let data= await getData();
     let newData= data.filter((value,index)=>{
         if(value.price<=filters.price){
-
+            
             if((filters.grind_option!="" && filters.region!="")){
-            return( (value.grind_option.includes(filters.grind_option) && value.region.includes(filters.region)) && (value.price*80)<=filters.price);
+                return( (value.grind_option.includes(filters.grind_option) && value.region.includes(filters.region)) && (value.price*80)<=filters.price);
             }
             else if(filters.grind_option!=""){
-            return( value.grind_option.includes(filters.grind_option) && value.price<=filters.price);
+                return( value.grind_option.includes(filters.grind_option) && value.price<=filters.price);
             }
             else{
-            return(value.region.includes(filters.region)  && value.price<=filters.price);
+                return(value.region.includes(filters.region)  && value.price<=filters.price);
             }
-    }
+        }
     });
     return newData;
 }
 async function getData(){
-    let data =await fetch(`http://localhost:3000/coffee`);
+    let data =await fetch(`${import.meta.env.VITE_SERVER_URL}coffee`);
     let pureData= await data.json();
     return pureData;
   }

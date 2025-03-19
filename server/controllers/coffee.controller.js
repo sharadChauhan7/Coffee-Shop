@@ -11,7 +11,6 @@ const getCoffee = async (req,res)=>{
         else{
             data = await Coffee.find().sort({createdAt:-1});
         }
-        console.log("this "+data);
         res.status(200).send(data);
     }
     catch(err){
@@ -22,7 +21,6 @@ const getCoffee = async (req,res)=>{
 const addCoffee = async(req,res)=>{
     try{
         let data = req.body;
-        console.log(data);
         let ans = await Coffee.insertMany(data);
         res.status(200).send(ans);
     }

@@ -2,9 +2,6 @@ import React from "react";
 
 // Icons
 import { CiLocationOn } from "react-icons/ci";
-import { CiHeart } from "react-icons/ci";
-import { GoBell } from "react-icons/go";
-import { IoBagOutline } from "react-icons/io5";
 import { CiUser } from "react-icons/ci";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Logout from "../main/logout"
@@ -19,7 +16,7 @@ import { useUser } from "../../config/user";
 function Navbar() {
 
   let [popup, setPopup] = useState(false);
-  let { handellogin, handelsignup, handelPopcart,num ,search, handleSearch} = usePopup();
+  let { handellogin, handelsignup, handelPopcart,num , handleSearch} = usePopup();
   let {isLoggedIn} = useUser();
 
   const [navbarOpen,setNavbarOpen]=useState(false);

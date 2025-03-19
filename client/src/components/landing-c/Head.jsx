@@ -9,6 +9,7 @@ import { useState,useEffect } from "react";
 import {usePopup} from "../../config/popup"
 import {useUser} from "../../config/user"
 import {Link} from 'react-router-dom'
+import { v4 as uuidv4 } from 'uuid'
 
 function Heading() {
   return (
@@ -24,7 +25,7 @@ function Tab({ btns }) {
     <>
       {btns.map((data, index) => {
         return (
-          <Link to={data[1]}>
+          <Link key={uuidv4()} to={data[1]}>
           <span className="mx-4" key={index}>
             {data[0]}
           </span>

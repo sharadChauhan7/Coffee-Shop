@@ -2,7 +2,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  useParams,
+  useLocation
 } from "react-router-dom";
 import "./App.css";
 import Test from "./pages/test";
@@ -21,11 +21,10 @@ import axios from "axios";
 
 import "react-toastify/dist/ReactToastify.css";
 
-// Import axios
-
-function App() {
-  let { userId } = useParams();
+function AppContent() {
+  const location = useLocation();
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     async function checkAuth() {
       try {
@@ -34,33 +33,56 @@ function App() {
         setLoading(false);
         toast.success('Connected to server');
       } catch (error) {
-        
         console.error(error);
         toast.error("Error connecting to server");
       }
     }
     checkAuth();
-  },[]);
+  }, []);
+
+  useEffect(() => {
+    const routeTitles = {
+      '/': 'Home',
+      '/store': 'Store',
+      '/product': 'Product',
+      '/product/checkout': 'Checkout',
+      '/paymentsuccess': 'Successful',
+      // Add more routes and titles as needed
+    };
+
+    const currentTitle = routeTitles[location.pathname] || 'Coffee-Shop';
+    document.title = currentTitle;
+  }, [location]);
+
   return (
     <>
-      <ToastContainer />
-      <Router>
-        {loading ? <Connector /> :
+      {loading ? (
+        <Connector />
+      ) : (
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/store" element={<Store />} />
           <Route path="/paymentsuccess" element={<PaymentSuccess />} />
           <Route path="/user" element={<Privaterout />}>
             <Route path="product/:userId" element={<Product />} />
-            <Route path='product/checkout' element={<Checkout />} />
+            <Route path="product/checkout" element={<Checkout />} />
             <Route path="test" element={<Test />} />
           </Route>
         </Routes>
+      )}
+    </>
+  );
 }
+
+function App() {
+  return (
+    <>
+      <ToastContainer />
+      <Router>
+        <AppContent />
       </Router>
     </>
   );
 }
 
 export default App;
-
