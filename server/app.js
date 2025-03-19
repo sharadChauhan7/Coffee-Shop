@@ -9,8 +9,6 @@ require('dotenv').config({path:'./.env'});
 
 const port =process.env.PORT;
 
-const User=require('./model/user');
-
 app.use(cors(
   {
     origin: ["http://localhost:5173","https://browncoffeeshop.netlify.app"],
@@ -23,6 +21,7 @@ const auth=require('./routes/auth.js');
 const cart=require('./routes/cart.js');
 const payment=require('./routes/paymentroute.js');
 const instance = require('./config/razorpay.js');
+const coffee = require('./routes/coffee.js');
 
 
 
@@ -48,19 +47,19 @@ const sessionOption={
   }
 }
 
-
 app.use(session(sessionOption));
 app.get('/',(req,res)=>{
   res.json("Working");
 })
 
+
 app.use('/auth',auth);
 app.use('/cart',cart);
 app.use('/payment',payment);
-
+app.use('/coffee',coffee);
 
 
 app.listen(port,()=>{
-    console.log("Port is Listening");
+    console.log("Port is Listening to "+port);
 });
 

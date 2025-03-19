@@ -31,7 +31,7 @@ function Product() {
   async function handelCart() {
     let itemObj = {
       name: item.name,
-      price: (item.price - discount)*80,
+      price: (item.price - discount),
       size: itemInfo.size,
       service: itemInfo.service,
       quantity: itemInfo.quantity,
@@ -56,9 +56,11 @@ function Product() {
     getCart();
 
     async function getData(key) {
-      let data = await fetch(`https://fake-coffee-api.vercel.app/api/${key}`);
+      console.log(key);
+      let data = await fetch(`http://localhost:3000/coffee/${key}`);
       let pureData = await data.json();
-      setItem(pureData[0]);
+      console.log(pureData);
+      setItem(pureData);
     }
     getData(userId);
   }, []);
@@ -129,9 +131,9 @@ function Product() {
           <div className="border-b-2 pb-4">
             <h1 className="text-5xl mb-4 font-bold max-cd:text-4xl">{item.name}</h1>
             <h2 className="text-3xl font-medium">
-            &#8377;{(item.price - discount)*80}{" "}
+            &#8377;{(item.price - discount)}{" "}
               <span className="line-through text-xl text-gray-500 ml-4">
-                {item.price*80}
+                {item.price}
               </span>
             </h2>
           </div>

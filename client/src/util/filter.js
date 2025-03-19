@@ -3,7 +3,7 @@ import { func } from "joi";
 async function filData(filters){
     let data= await getData();
     let newData= data.filter((value,index)=>{
-        if(value.price*80<=filters.price){
+        if(value.price<=filters.price){
 
             if((filters.grind_option!="" && filters.region!="")){
             return( (value.grind_option.includes(filters.grind_option) && value.region.includes(filters.region)) && (value.price*80)<=filters.price);
@@ -18,8 +18,8 @@ async function filData(filters){
     });
     return newData;
 }
-async function getData(items=20){
-    let data =await fetch(`https://fake-coffee-api.vercel.app/api?limit=${items}`);
+async function getData(){
+    let data =await fetch(`http://localhost:3000/coffee`);
     let pureData= await data.json();
     return pureData;
   }
